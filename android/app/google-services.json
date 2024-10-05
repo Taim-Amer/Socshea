@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "928192164910",
+    "project_id": "socsheaapp",
+    "storage_bucket": "socsheaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928192164910:android:6b4f363776967c12b19bbf",
+        "android_client_info": {
+          "package_name": "com.example.socshea"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0w51PdgxBDWyQOBjhMQvBOvVPQQ27gcQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
