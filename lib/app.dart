@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socshea/features/login/presentation/views/login_screen.dart';
 import 'package:socshea/utils/theme/theme.dart';
 
 class App extends StatelessWidget {
@@ -11,7 +12,7 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
-      // home: LoginScreen(),
+      home: const LoginScreen(),
     );
   }
 }

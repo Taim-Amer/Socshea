@@ -36,6 +36,6 @@ class TFirebaseAuthExceptions implements Exception{
       default:
         return "Something went wrong. Please try again.";
     }
-    return code;
+    // return code;
   }
 }
