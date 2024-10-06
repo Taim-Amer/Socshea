@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:socshea/utils/constants/sizes.dart';
+import 'package:socshea/utils/constants/text_strings.dart';
 
 class TLoginForm extends StatelessWidget {
   const TLoginForm({super.key,});
@@ -9,8 +10,7 @@ class TLoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-            vertical: TSizes.spaceBtwSections),
+        padding: const EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
         child: Column(
           children: [
             TextFormField(
@@ -42,7 +42,7 @@ class TLoginForm extends StatelessWidget {
                   ],
                 ),
                 TextButton(
-                    onPressed: () => Get.to(() => const ForgetPassword()),
+                    onPressed: () {},
                     child: const Text(TTexts.forgetPassword)),
               ],
             ),
@@ -52,7 +52,7 @@ class TLoginForm extends StatelessWidget {
             SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    onPressed: () => Get.to(const NavigationMenu()),
+                    onPressed: (){},
                     child: const Text(TTexts.signIn),
                 ),
             ),
@@ -60,7 +60,8 @@ class TLoginForm extends StatelessWidget {
             SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(
-                    onPressed: () => Get.to(() => const SignupScreen()),
+                    // onPressed: () => Get.to(() => const SignupScreen()),
+                    onPressed: () {},
                     child: const Text(TTexts.createAccount),
                 ),
             ),

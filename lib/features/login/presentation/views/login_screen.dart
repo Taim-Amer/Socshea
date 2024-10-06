@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_store/common/styles/spacing_styles.dart';
-import 'package:t_store/common/widgets/login_signup/form_divider.dart';
-import 'package:t_store/common/widgets/login_signup/social_buttons.dart';
-import 'package:t_store/features/authentication/screens/login/widgets/login_form.dart';
-import 'package:t_store/features/authentication/screens/login/widgets/login_header.dart';
-import 'package:t_store/utils/constants/sizes.dart';
-import 'package:t_store/utils/constants/text_strings.dart';
+import 'package:socshea/common/styles/spacing_styles.dart';
+import 'package:socshea/common/widgets/login_signup/form_divider.dart';
+import 'package:socshea/common/widgets/login_signup/social_buttons.dart';
+import 'package:socshea/features/login/presentation/views/widgets/login_form.dart';
+import 'package:socshea/features/login/presentation/views/widgets/login_header.dart';
+import 'package:socshea/utils/constants/sizes.dart';
+import 'package:socshea/utils/constants/text_strings.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
