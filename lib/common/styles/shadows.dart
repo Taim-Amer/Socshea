@@ -15,5 +15,6 @@ class TShadowStyle {
     blurRadius: 50,
     spreadRadius: 7,
     offset: const Offset(0, 2),
+
   );
 }
