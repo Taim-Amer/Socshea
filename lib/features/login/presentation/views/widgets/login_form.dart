@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:socshea/features/login/presentation/manager/form_key_cubit/form_key_cubit.dart';
 import 'package:socshea/utils/constants/sizes.dart';
@@ -10,39 +9,32 @@ class TLoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FormKeyCubit(),
-      child: Builder(builder: (context) {
-        final formKeyCubit = context.read<FormKeyCubit>();
-
+    return Builder(
+      builder: (context) {
         return Form(
-          key: formKeyCubit.formKey,
+          key: FormKeyCubit.get(context).formKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
             child: Column(
               children: [
                 TextFormField(
-                  validator: formKeyCubit.emailValidator,
+                  validator: FormKeyCubit.get(context).emailValidator,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Iconsax.direct_right),
                     labelText: TTexts.email,
                   ),
-                  onChanged: formKeyCubit.onEmailChanged,
                 ),
                 const SizedBox(height: TSizes.spaceBtwInputField),
-
                 TextFormField(
-                  validator: formKeyCubit.passwordValidator,
+                  validator: FormKeyCubit.get(context).passwordValidator,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Iconsax.password_check),
                     labelText: TTexts.password,
                     suffixIcon: Icon(Iconsax.eye_slash),
                   ),
-                  onChanged: formKeyCubit.onPasswordChanged,
                   obscureText: true,
                 ),
                 const SizedBox(height: TSizes.spaceBtwInputField / 2),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -58,16 +50,14 @@ class TLoginForm extends StatelessWidget {
                     ),
                   ],
                 ),
-
                 const SizedBox(height: TSizes.spaceBtwSections),
-
                 Column(
                   children: [
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          formKeyCubit.validateForm();
+                          FormKeyCubit.get(context).validateForm();
                         },
                         child: const Text(TTexts.signIn),
                       ),
@@ -88,7 +78,7 @@ class TLoginForm extends StatelessWidget {
             ),
           ),
         );
-      }),
+      }
     );
   }
 }

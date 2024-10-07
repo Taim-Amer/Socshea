@@ -1,14 +1,8 @@
-import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
-import "package:get/get.dart";
-import "package:t_store/common/widgets/success_screen/success_screen.dart";
-import "package:t_store/data/repositories/authentication/authentication_repository.dart";
-import "package:t_store/features/authentication/controllers/signup/verify_email_controller.dart";
-import "package:t_store/features/authentication/screens/login/login.dart";
-import "package:t_store/utils/constants/image_strings.dart";
-import "package:t_store/utils/constants/sizes.dart";
-import "package:t_store/utils/constants/text_strings.dart";
-import "package:t_store/utils/helpers/helper_functions.dart";
+import "package:socshea/utils/constants/image_strings.dart";
+import "package:socshea/utils/constants/sizes.dart";
+import "package:socshea/utils/constants/text_strings.dart";
+import "package:socshea/utils/helpers/helper_functions.dart";
 
 class VerifyEmailScreen extends StatelessWidget {
   const VerifyEmailScreen({super.key, this.email});
@@ -17,12 +11,12 @@ class VerifyEmailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(VerifyEmailController());
+    // final controller = Get.put(VerifyEmailController());
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        actions: [
-          IconButton(onPressed: () => Get.offAll(() => AuthenticationRepository.instance.logout()), icon: const Icon(CupertinoIcons.clear))
+        actions: const [
+          // IconButton(onPressed: () => Get.offAll(() => AuthenticationRepository.instance.logout()), icon: const Icon(CupertinoIcons.clear))
         ],
       ),
       body: SingleChildScrollView(
@@ -33,7 +27,7 @@ class VerifyEmailScreen extends StatelessWidget {
               //image
               Image(
                 image: const AssetImage(TImages.deliveredEmailIllustration),
-                width: THelperFunctions.screenWidth(),
+                width: THelperFunctions.screenWidth(context),
               ),
               const SizedBox(height: TSizes.spaceBtwSections),
 
@@ -47,10 +41,15 @@ class VerifyEmailScreen extends StatelessWidget {
 
               //buttons
               SizedBox(width: double.infinity, child: ElevatedButton(
-                onPressed: () => controller.checkEmailVerificationStatus(),
+                // onPressed: () => controller.checkEmailVerificationStatus(),
+                onPressed: () {},
                 child: const Text(TTexts.tContinue),),),
               const SizedBox(height: TSizes.spaceBtwItems,),
-              SizedBox(width: double.infinity, child: TextButton(onPressed: () => controller.sendEmailVerification(), child: const Text(TTexts.resendEmail),),)
+              SizedBox(width: double.infinity, child: TextButton(
+                // onPressed: () => controller.sendEmailVerification(),
+                onPressed: () {},
+                child: const Text(TTexts.resendEmail),
+              ))
             ],
           ),
         ),

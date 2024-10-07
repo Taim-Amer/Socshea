@@ -1,8 +1,58 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:socshea/features/login/data/repositories/login_repo_impl.dart';
+import 'package:socshea/features/login/presentation/manager/form_key_cubit/form_key_cubit.dart';
+import 'package:socshea/features/login/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:socshea/features/login/presentation/views/login_screen.dart';
+import 'package:socshea/features/register/data/repositories/register_repo_impl.dart';
+import 'package:socshea/features/register/presentation/manager/register_cubit/register_cubit.dart';
+import 'package:socshea/utils/dependencies/service_locator.dart';
 
+abstract class AppRouter {
+  static const kLoginScreen = "/";
+  static const kRegisterScreen = '/kRegisterScreen';
+  static final router = GoRouter(
+    routes: [
+      //---Login
+      GoRoute(
+        path: kLoginScreen,
+        builder: (context, state){
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => FormKeyCubit()),
+              BlocProvider(create: (context) => LoginCubit(loginRepo: getIt.get<LoginRepoImpl>())),
+            ], 
+            child: const LoginScreen(),
+          );
+        }
+      ),
 
-//abstract class AppRouter {
-//   static const kHomeView = "/kHomeView";
-//   static const kLoginView = "/";
+      //---Register
+      GoRoute(
+          path: kLoginScreen,
+          builder: (context, state){
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(create: (context) => FormKeyCubit()),
+                BlocProvider(create: (context) => RegisterCubit(registerRepo: getIt.get<RegisterRepoImpl>())),
+              ],
+              child: const LoginScreen(),
+            );
+          }
+        // builder: (context, state) => MultiBlocProvider(providers: [
+        //   BlocProvider<PasswordVisibilityCubit>(
+        //       create: (context) => PasswordVisibilityCubit()),
+        //   BlocProvider(
+        //     create: (context) =>
+        //         LoginCubit(loginRepo: getIt.get<LoginRepoImpl>()),
+        //     child: LoginView(),
+        //   )
+        // ], child: LoginView()),
+      ),
+    ]
+  );
+
+}
 //   static const kRegisterView = '/kRegisterView1';
 //   static const kCompleteRegisterView = '/kRegisterView2';
 //   static const kTechCategoryView = "/kTechCategoryView";
@@ -28,7 +78,6 @@
 //   static const kSearchResultView = "/kSearchResultView";
 //   static const kExpertProfile = "/kExpertProfile";
 //   static const kStudentProfile = "/kStudentProfile";
-//   static final router = GoRouter(
 //     routes: [
 //       //Home
 //       GoRoute(
@@ -130,18 +179,7 @@
 //               ),
 //               transitionsBuilder: HelperFunctions.slideFromRightTransition)),
 //       //Login
-//       GoRoute(
-//         path: kLoginView,
-//         builder: (context, state) => MultiBlocProvider(providers: [
-//           BlocProvider<PasswordVisibilityCubit>(
-//               create: (context) => PasswordVisibilityCubit()),
-//           BlocProvider(
-//             create: (context) =>
-//                 LoginCubit(loginRepo: getIt.get<LoginRepoImpl>()),
-//             child: LoginView(),
-//           )
-//         ], child: LoginView()),
-//       ),
+
 //
 //       GoRoute(
 //           path: kForgetPasswordView,
