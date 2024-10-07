@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:socshea/features/login/presentation/manager/form_key_cubit/form_key_cubit.dart';
+import 'package:socshea/features/login/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:socshea/utils/constants/sizes.dart';
 import 'package:socshea/utils/constants/text_strings.dart';
+import 'package:socshea/utils/router/app_router.dart';
+import 'package:socshea/utils/validators/validation.dart';
 
 class TLoginForm extends StatelessWidget {
   const TLoginForm({super.key});
@@ -12,13 +15,13 @@ class TLoginForm extends StatelessWidget {
     return Builder(
       builder: (context) {
         return Form(
-          key: FormKeyCubit.get(context).formKey,
+          key: LoginCubit.get(context).loginFormKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
             child: Column(
               children: [
                 TextFormField(
-                  validator: FormKeyCubit.get(context).emailValidator,
+                  validator: (value) => TValidator.validateEmail(value),
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Iconsax.direct_right),
                     labelText: TTexts.email,
@@ -26,7 +29,8 @@ class TLoginForm extends StatelessWidget {
                 ),
                 const SizedBox(height: TSizes.spaceBtwInputField),
                 TextFormField(
-                  validator: FormKeyCubit.get(context).passwordValidator,
+                  // validator: FormKeyCubit.get(context).passwordValidator,
+                  validator: (value) => TValidator.validatePassword(value),
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Iconsax.password_check),
                     labelText: TTexts.password,
@@ -56,9 +60,7 @@ class TLoginForm extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
-                          FormKeyCubit.get(context).validateForm();
-                        },
+                        onPressed: () => LoginCubit.get(context).login,
                         child: const Text(TTexts.signIn),
                       ),
                     ),
@@ -66,8 +68,7 @@ class TLoginForm extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: OutlinedButton(
-                        // onPressed: () => Get.to(() => const SignupScreen()),
-                        onPressed: () {},
+                        onPressed: () => GoRouter.of(context).pushNamed(TAppRouter.kRegisterScreen),
                         child: const Text(TTexts.createAccount),
                       ),
                     ),

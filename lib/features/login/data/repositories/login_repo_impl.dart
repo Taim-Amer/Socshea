@@ -7,6 +7,7 @@ class LoginRepoImpl implements LoginRepo {
   final FirebaseAuth firebaseAuth;
   LoginRepoImpl({required this.firebaseAuth});
 
+
   @override
   Future<Either<Failure, UserCredential>> login({required String email, required String password}) async {
     try {

@@ -1,4 +1,4 @@
-class Validator {
+class TValidator {
 
   static String? validateEmptyText(String? fieldName, String? value){
     if(value == null || value.isEmpty){

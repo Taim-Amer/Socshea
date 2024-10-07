@@ -1,14 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:socshea/features/login/data/repositories/login_repo_impl.dart';
-import 'package:socshea/features/login/presentation/manager/form_key_cubit/form_key_cubit.dart';
 import 'package:socshea/features/login/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:socshea/features/login/presentation/views/login_screen.dart';
-import 'package:socshea/features/register/data/repositories/register_repo_impl.dart';
-import 'package:socshea/features/register/presentation/manager/register_cubit/register_cubit.dart';
+import 'package:socshea/features/signup/data/repositories/register_repo_impl.dart';
+import 'package:socshea/features/signup/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:socshea/utils/dependencies/service_locator.dart';
 
-abstract class AppRouter {
+abstract class TAppRouter {
   static const kLoginScreen = "/";
   static const kRegisterScreen = '/kRegisterScreen';
   static final router = GoRouter(
@@ -19,7 +18,6 @@ abstract class AppRouter {
         builder: (context, state){
           return MultiBlocProvider(
             providers: [
-              BlocProvider(create: (context) => FormKeyCubit()),
               BlocProvider(create: (context) => LoginCubit(loginRepo: getIt.get<LoginRepoImpl>())),
             ], 
             child: const LoginScreen(),
@@ -33,7 +31,6 @@ abstract class AppRouter {
           builder: (context, state){
             return MultiBlocProvider(
               providers: [
-                BlocProvider(create: (context) => FormKeyCubit()),
                 BlocProvider(create: (context) => RegisterCubit(registerRepo: getIt.get<RegisterRepoImpl>())),
               ],
               child: const LoginScreen(),
