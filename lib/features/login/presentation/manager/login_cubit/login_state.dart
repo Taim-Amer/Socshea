@@ -16,3 +16,8 @@ class LoginFailureState extends LoginState {
   final String error;
   const LoginFailureState(this.error);
 }
+
+class HidePasswordState extends LoginState{
+  final bool isPassword;
+  const HidePasswordState(this.isPassword);
+}

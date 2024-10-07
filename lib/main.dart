@@ -1,6 +1,6 @@
-import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:socshea/app.dart';
 import 'package:socshea/bloc_observer.dart';
 import 'package:socshea/firebase_options.dart';
@@ -15,9 +15,9 @@ Future<void> main() async{
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  Bloc.observer = MyBlocObserver();
-
   await TCacheHelper().init();
+
+  Bloc.observer = MyBlocObserver();
 
   initServiceLocator();
 

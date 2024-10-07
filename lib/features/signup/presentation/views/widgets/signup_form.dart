@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:socshea/features/signup/presentation/manager/register_cubit/register_cubit.dart';
-import 'package:socshea/features/signup/presentation/views/widgets/terms_conditions_checkbox.dart';
 import 'package:socshea/utils/constants/sizes.dart';
 import 'package:socshea/utils/constants/text_strings.dart';
 import 'package:socshea/utils/validators/validation.dart';
@@ -69,33 +67,28 @@ class TSignupForm extends StatelessWidget {
 
           const SizedBox(height: TSizes.spaceBtwInputField,),
           //Password
-          Obx(() => TextFormField(
+          TextFormField(
             controller: RegisterCubit.get(context).passwordController,
             validator: (value) => TValidator.validatePassword(value),
-            // obscureText: controller.hidePassword.value,
+            obscureText: RegisterCubit.get(context).hidePassword,
             decoration: InputDecoration(
                 labelText: TTexts.password,
                 prefixIcon: const Icon(Iconsax.password_check),
                 suffixIcon: IconButton(
-                  onPressed: (){},
-                  icon: const Icon(Iconsax.activity),
-                  // onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
-                  // icon: Icon(controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye),
+                  onPressed: () => RegisterCubit.get(context).hidePassword = !RegisterCubit.get(context).hidePassword,
+                  icon: Icon(RegisterCubit.get(context).hidePassword ? Iconsax.eye_slash : Iconsax.eye),
                 )
             ),
-          )),
+          ),
 
           const SizedBox(height: TSizes.spaceBtwSections,),
-
-          //Terms and conditions CheckBox
-          const TTermsAndConditionCheckbox(),
 
           const SizedBox(height: TSizes.spaceBtwSections,),
 
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () => RegisterCubit.get(context).register,
+              onPressed: () => RegisterCubit.get(context).register(),
               child: const Text(TTexts.createAccount),
             ),
           ),

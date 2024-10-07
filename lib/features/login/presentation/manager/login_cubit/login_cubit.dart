@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +16,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  late bool hidePassword = true;
 
   Future<void> login() async{
     emit(LoginLoadingState());
@@ -30,5 +30,10 @@ class LoginCubit extends Cubit<LoginState> {
             (failure) => LoginFailureState(failure.errMessage),
             (success) => LoginSuccessState());
 
+  }
+
+  void changePasswordVisibility(){
+    hidePassword = !hidePassword;
+    emit(HidePasswordState(hidePassword));
   }
 }

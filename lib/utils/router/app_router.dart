@@ -5,11 +5,12 @@ import 'package:socshea/features/login/presentation/manager/login_cubit/login_cu
 import 'package:socshea/features/login/presentation/views/login_screen.dart';
 import 'package:socshea/features/signup/data/repositories/register_repo_impl.dart';
 import 'package:socshea/features/signup/presentation/manager/register_cubit/register_cubit.dart';
+import 'package:socshea/features/signup/presentation/views/signup_screen.dart';
 import 'package:socshea/utils/dependencies/service_locator.dart';
 
 abstract class TAppRouter {
   static const kLoginScreen = "/";
-  static const kRegisterScreen = '/kRegisterScreen';
+  static const kRegisterScreen = '/register';
   static final router = GoRouter(
     routes: [
       //---Login
@@ -27,13 +28,14 @@ abstract class TAppRouter {
 
       //---Register
       GoRoute(
-          path: kLoginScreen,
+          path: kRegisterScreen,
+          // name: 'register',
           builder: (context, state){
             return MultiBlocProvider(
               providers: [
                 BlocProvider(create: (context) => RegisterCubit(registerRepo: getIt.get<RegisterRepoImpl>())),
               ],
-              child: const LoginScreen(),
+              child: const SignupScreen(),
             );
           }
         // builder: (context, state) => MultiBlocProvider(providers: [
@@ -48,7 +50,6 @@ abstract class TAppRouter {
       ),
     ]
   );
-
 }
 //   static const kRegisterView = '/kRegisterView1';
 //   static const kCompleteRegisterView = '/kRegisterView2';

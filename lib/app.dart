@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socshea/features/login/presentation/views/login_screen.dart';
+import 'package:socshea/utils/router/app_router.dart';
 import 'package:socshea/utils/theme/theme.dart';
 
 class App extends StatelessWidget {
@@ -7,12 +8,12 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
-      home: const LoginScreen(),
+      routerConfig: TAppRouter.router,
     );
   }
 }

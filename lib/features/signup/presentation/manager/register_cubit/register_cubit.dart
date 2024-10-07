@@ -20,10 +20,11 @@ class RegisterCubit extends Cubit<RegisterState> {
   final lastNameController = TextEditingController();
   final usernameController = TextEditingController();
   final phoneNumberController = TextEditingController();
+  bool hidePassword = true;
 
   Future<void> register() async{
     final isConnected = await TNetworkManager.instance.isConnected();
-    if(isConnected) return;
+    if(!isConnected) return;
 
     if(!registerFormKey.currentState!.validate()) return;
 
