@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:socshea/features/signup/data/repositories/register_repo.dart';
 import 'package:socshea/utils/network/network_manager.dart';
 
-part 'register_state.dart';
+part 'register_email_state.dart';
 
-class RegisterCubit extends Cubit<RegisterState> {
-  RegisterCubit({required this.registerRepo}) : super(RegisterInitial());
+class RegisterEmailCubit extends Cubit<RegisterEmailState> {
+  RegisterEmailCubit({required this.registerRepo}) : super(RegisterInitial());
 
-  static RegisterCubit get(context) => BlocProvider.of(context);
+  static RegisterEmailCubit get(context) => BlocProvider.of(context);
   
   final RegisterRepo registerRepo;
   GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
@@ -22,18 +22,19 @@ class RegisterCubit extends Cubit<RegisterState> {
   final phoneNumberController = TextEditingController();
   bool hidePassword = true;
 
-  Future<void> register() async{
+  Future<void> registerWithEmail() async{
+    emit(RegisterEmailLoadingState());
+
     final isConnected = await TNetworkManager.instance.isConnected();
     if(!isConnected) return;
 
     if(!registerFormKey.currentState!.validate()) return;
 
-    emit(RegisterLoadingState());
-    var response = await registerRepo.register(email: emailController.text.trim(), password: passwordController.text.trim());
+    var response = await registerRepo.registerWithEmail(email: emailController.text.trim(), password: passwordController.text.trim());
 
     response.fold(
-            (failure) => RegisterFailureState(failure.errMessage),
-            (success) => RegisterSuccessState());
+            (failure) => RegisterEmailFailureState(failure.errMessage),
+            (success) => RegisterEmailSuccessState());
 
   }
 }

@@ -2,10 +2,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:socshea/features/login/data/repositories/login_repo_impl.dart';
 import 'package:socshea/features/login/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:socshea/features/login/presentation/manager/register_google_cubit/register_google_cubit.dart';
 import 'package:socshea/features/login/presentation/views/login_screen.dart';
-import 'package:socshea/features/signup/data/repositories/register_repo_impl.dart';
-import 'package:socshea/features/signup/presentation/manager/register_cubit/register_cubit.dart';
-import 'package:socshea/features/signup/presentation/views/signup_screen.dart';
+import 'package:socshea/features/register/data/repositories/register_repo_impl.dart';
+import 'package:socshea/features/register/presentation/manager/register_cubit/register_email_cubit.dart';
+import 'package:socshea/features/register/presentation/views/register_screen.dart';
 import 'package:socshea/utils/dependencies/service_locator.dart';
 
 abstract class TAppRouter {
@@ -20,7 +21,8 @@ abstract class TAppRouter {
           return MultiBlocProvider(
             providers: [
               BlocProvider(create: (context) => LoginCubit(loginRepo: getIt.get<LoginRepoImpl>())),
-            ], 
+              BlocProvider(create: (context) => RegisterGoogleCubit(registerGoogleRepo: getIt.get<LoginRepoImpl>())),
+            ],
             child: const LoginScreen(),
           );
         }
@@ -33,9 +35,9 @@ abstract class TAppRouter {
           builder: (context, state){
             return MultiBlocProvider(
               providers: [
-                BlocProvider(create: (context) => RegisterCubit(registerRepo: getIt.get<RegisterRepoImpl>())),
+                BlocProvider(create: (context) => RegisterEmailCubit(registerRepo: getIt.get<RegisterRepoImpl>())),
               ],
-              child: const SignupScreen(),
+              child: const RegisterScreen(),
             );
           }
         // builder: (context, state) => MultiBlocProvider(providers: [

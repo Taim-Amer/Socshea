@@ -46,6 +46,7 @@
 //     _connectivitySubscription.cancel();
 //   }
 // }
+
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/services.dart';
@@ -66,9 +67,7 @@ class TNetworkManager {
 
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
     connectivityStatus = result;
-    if (connectivityStatus == ConnectivityResult.none) {
-      print("===============================");
-    }
+    if (connectivityStatus == ConnectivityResult.none) {}
   }
 
   Future<bool> isConnected() async {

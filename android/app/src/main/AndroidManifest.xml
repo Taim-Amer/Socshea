@@ -3,6 +3,7 @@
 
     <application
         android:label="socshea"
+        android:usesCleartextTraffic="true"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
