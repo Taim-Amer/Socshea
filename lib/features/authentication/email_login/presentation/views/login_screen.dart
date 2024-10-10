@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:socshea/common/styles/spacing_styles.dart';
 import 'package:socshea/common/widgets/login_signup/form_divider.dart';
 import 'package:socshea/common/widgets/login_signup/social_buttons.dart';
-import 'package:socshea/features/authentication/login/presentation/views/widgets/login_form.dart';
-import 'package:socshea/features/authentication/login/presentation/views/widgets/login_header.dart';
+import 'package:socshea/features/authentication/email_login/presentation/views/widgets/login_form.dart';
+import 'package:socshea/features/authentication/email_login/presentation/views/widgets/login_header.dart';
 import 'package:socshea/utils/constants/sizes.dart';
 import 'package:socshea/utils/constants/text_strings.dart';
 

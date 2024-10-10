@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:socshea/features/authentication/register/presentation/manager/register_cubit/register_email_cubit.dart';
+import 'package:socshea/features/authentication/email_register/presentation/manager/register_cubit/register_email_cubit.dart';
 import 'package:socshea/utils/constants/sizes.dart';
 import 'package:socshea/utils/constants/text_strings.dart';
 import 'package:socshea/utils/validators/validation.dart';

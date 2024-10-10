@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:socshea/features/authentication/login/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:socshea/features/authentication/email_login/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:socshea/utils/constants/sizes.dart';
 import 'package:socshea/utils/constants/text_strings.dart';
 import 'package:socshea/utils/router/app_router.dart';

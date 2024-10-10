@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:socshea/features/login/presentation/views/login_screen.dart';
 import 'package:socshea/utils/router/app_router.dart';
 import 'package:socshea/utils/theme/theme.dart';
 

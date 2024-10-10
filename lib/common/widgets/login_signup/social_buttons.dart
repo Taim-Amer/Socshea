@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:socshea/features/login/presentation/manager/register_google_cubit/register_google_cubit.dart';
+import 'package:socshea/features/authentication/google_auth/presentaion/manager/google_auth_cubit/google_auth_cubit.dart';
 import 'package:socshea/utils/constants/colors.dart';
 import 'package:socshea/utils/constants/image_strings.dart';
 import 'package:socshea/utils/constants/sizes.dart';
@@ -13,12 +13,12 @@ class TSocialButtons extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        BlocBuilder<RegisterGoogleCubit, RegisterGoogleState>(
+        BlocBuilder<GoogleAuthCubit, GoogleAuthState>(
             builder: (context, state){
               return Container(
                 decoration: BoxDecoration(border: Border.all(color: TColors.grey,), borderRadius: BorderRadius.circular(100)),
                 child: IconButton(
-                  onPressed: () => RegisterGoogleCubit.get(context).registerWithGoogle(),
+                  onPressed: () => GoogleAuthCubit.get(context).googleAuthentication(),
                   icon: const Image(
                     width: TSizes.iconMd,
                     height: TSizes.iconMd,

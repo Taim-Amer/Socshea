@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:socshea/common/styles/shadows.dart';
 import 'package:socshea/common/widgets/custom_shapes/containers/rounded_container.dart';

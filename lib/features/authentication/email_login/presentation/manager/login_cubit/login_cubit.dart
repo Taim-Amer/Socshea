@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:socshea/features/authentication/login/data/repositories/login_repo.dart';
+import 'package:socshea/features/authentication/email_login/data/repositories/login_repo.dart';
 import 'package:socshea/utils/network/network_manager.dart';
 
 part 'login_state.dart';
