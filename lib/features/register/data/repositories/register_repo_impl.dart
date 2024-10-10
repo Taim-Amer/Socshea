@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:socshea/features/signup/data/repositories/register_repo.dart';
+import 'package:socshea/features/register/data/repositories/register_repo.dart';
 import 'package:socshea/utils/exceptions/failures.dart';
 
 class RegisterRepoImpl implements RegisterRepo{

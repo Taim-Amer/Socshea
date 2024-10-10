@@ -17,10 +17,11 @@ class RegisterGoogleCubit extends Cubit<RegisterGoogleState> {
     final isConnected = await TNetworkManager.instance.isConnected();
     if(!isConnected) return;
 
+
     var response = await registerGoogleRepo.registerWithGoogle();
     
     response.fold(
-            (failure) => RegisterGoogleFailureState(failure.errMessage),
-            (success) => RegisterGoogleSuccessState());
+            (failure) => emit(RegisterGoogleFailureState(failure.errMessage)),
+            (success) => emit(RegisterGoogleSuccessState()));
   }
 }

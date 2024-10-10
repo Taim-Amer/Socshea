@@ -34,26 +34,15 @@ class LoginRepoImpl implements LoginRepo {
       }
 
       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
+      final credential = GoogleAuthProvider.credential(accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
 
       final UserCredential userCredential = await firebaseAuth.signInWithCredential(credential);
-      print(userCredential.toString());
-      print(userCredential.toString());
       return Right(userCredential);
     } on FirebaseAuthException catch (e) {
-      print(e.message);
-      print("===============================================================================================");
       return Left(ServerFailure(e.message ?? "Google Sign-In Error"));
     } on FirebaseException catch (e) {
-      print(e.message);
-      print("===============================================================================================");
       return Left(ServerFailure(e.message ?? "Google Sign-In Error"));
     } catch (e) {
-      print(e.toString());
-      print("===============================================================================================");
       return Left(ServerFailure(e.toString()));
     }
   }

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:socshea/common/widgets/login_signup/form_divider.dart';
-import 'package:socshea/common/widgets/login_signup/social_buttons.dart';
 import 'package:socshea/features/register/presentation/views/widgets/register_form.dart';
 import 'package:socshea/utils/constants/sizes.dart';
 import 'package:socshea/utils/constants/text_strings.dart';
@@ -26,12 +23,12 @@ class RegisterScreen extends StatelessWidget {
 
               const SizedBox(height: TSizes.spaceBtwSections,),
 
-              //Divider
-              TFormDivider(dividerText: TTexts.orSignUpWith.capitalize!),
-              const SizedBox(height: TSizes.spaceBtwSections,),
+              // //Divider
+              // TFormDivider(dividerText: TTexts.orSignUpWith.capitalize!),
+              // const SizedBox(height: TSizes.spaceBtwSections,),
 
-              //Social Buttons
-              const TSocialButtons()
+              // //Social Buttons
+              // const TSocialButtons()
             ],
           ),
         ),
