@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:socshea/features/authentication/google_auth/presentaion/manager/google_auth_cubit/google_auth_cubit.dart';
+import 'package:socshea/features/authentication/google_auth/presentation/manager/google_auth_cubit/google_auth_cubit.dart';
 import 'package:socshea/utils/constants/colors.dart';
 import 'package:socshea/utils/constants/image_strings.dart';
 import 'package:socshea/utils/constants/sizes.dart';

@@ -7,7 +7,7 @@ import 'package:socshea/features/authentication/email_register/data/repositories
 import 'package:socshea/features/authentication/email_register/presentation/manager/register_cubit/register_email_cubit.dart';
 import 'package:socshea/features/authentication/email_register/presentation/views/register_screen.dart';
 import 'package:socshea/features/authentication/google_auth/data/repositories/google_auth_repo_impl.dart';
-import 'package:socshea/features/authentication/google_auth/presentaion/manager/google_auth_cubit/google_auth_cubit.dart';
+import 'package:socshea/features/authentication/google_auth/presentation/manager/google_auth_cubit/google_auth_cubit.dart';
 import 'package:socshea/utils/dependencies/service_locator.dart';
 
 abstract class TAppRouter {
