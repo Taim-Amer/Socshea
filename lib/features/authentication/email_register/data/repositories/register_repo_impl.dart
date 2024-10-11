@@ -18,8 +18,10 @@ class RegisterRepoImpl implements RegisterRepo{
         password: password,
       );
 
+      await sendEmailVerification();
+
       final newUser = UserModel(uID: userCredential.user!.uid, firstName: firstName, lastName: lastName, username: username, phone: phone, email: email);
-      saveUser(userModel: newUser);
+      await saveUser(userModel: newUser);
       
       return(Right(userCredential));
     } on FirebaseAuthException catch (e) {
@@ -36,6 +38,18 @@ class RegisterRepoImpl implements RegisterRepo{
     try {
       final firebaseFirestore = await firebaseFireStore.collection("users").doc(userModel.uID).set(userModel.toJson());
       return (Right(firebaseFirestore));
+    } on FirebaseException catch (e) {
+      return Left(ServerFailure(e.message ?? "Error"));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> sendEmailVerification() async{
+    try{
+      final verified = await firebaseAuth.currentUser?.sendEmailVerification();
+      return Right(verified);
     } on FirebaseException catch (e) {
       return Left(ServerFailure(e.message ?? "Error"));
     } catch (e) {

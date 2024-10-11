@@ -4,4 +4,6 @@ import 'package:socshea/utils/exceptions/failures.dart';
 
 abstract class GoogleAuthRepo{
   Future<Either<Failure, UserCredential>> googleAuthentication();
+
+  Future<void> saveUser(User user);
 }

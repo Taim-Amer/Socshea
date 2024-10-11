@@ -7,4 +7,6 @@ abstract class RegisterRepo{
   Future<Either<Failure, UserCredential>> registerWithEmail({required String firstName, required String lastName, required String username, required String phone,required String email, required String password});
 
   Future<Either<Failure, void>> saveUser({required UserModel userModel});
+
+  Future<Either<Failure, void>> sendEmailVerification();
 }
