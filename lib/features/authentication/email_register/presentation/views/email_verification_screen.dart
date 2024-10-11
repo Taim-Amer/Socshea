@@ -1,22 +1,22 @@
+import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:socshea/utils/constants/image_strings.dart";
 import "package:socshea/utils/constants/sizes.dart";
 import "package:socshea/utils/constants/text_strings.dart";
 import "package:socshea/utils/helpers/helper_functions.dart";
 
-class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key, this.email});
+class EmailVerificationScreen extends StatelessWidget {
+  const EmailVerificationScreen({super.key, this.email});
 
   final String? email;
 
   @override
   Widget build(BuildContext context) {
-    // final controller = Get.put(VerifyEmailController());
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        actions: const [
-          // IconButton(onPressed: () => Get.offAll(() => AuthenticationRepository.instance.logout()), icon: const Icon(CupertinoIcons.clear))
+        actions: [
+          IconButton(onPressed: (){}, icon: const Icon(CupertinoIcons.clear))
         ],
       ),
       body: SingleChildScrollView(
@@ -40,7 +40,7 @@ class VerifyEmailScreen extends StatelessWidget {
               SizedBox(width: double.infinity, child: ElevatedButton(
                 // onPressed: () => controller.checkEmailVerificationStatus(),
                 onPressed: () {},
-                child: const Text(TTexts.tContinue),),),
+                child: const Text(TTexts.tContinue))),
               const SizedBox(height: TSizes.spaceBtwItems,),
               SizedBox(width: double.infinity, child: TextButton(
                 // onPressed: () => controller.sendEmailVerification(),
