@@ -56,4 +56,11 @@ class RegisterRepoImpl implements RegisterRepo{
       return Left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<bool> checkEmailVerification() async{
+    final currentUser = firebaseAuth.currentUser;
+    if(currentUser != null && currentUser.emailVerified) return true;
+    return false;
+  }
 }

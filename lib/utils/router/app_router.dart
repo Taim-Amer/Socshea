@@ -5,6 +5,7 @@ import 'package:socshea/features/authentication/email_login/presentation/manager
 import 'package:socshea/features/authentication/email_login/presentation/views/login_screen.dart';
 import 'package:socshea/features/authentication/email_register/data/repositories/register_repo_impl.dart';
 import 'package:socshea/features/authentication/email_register/presentation/manager/register_cubit/register_email_cubit.dart';
+import 'package:socshea/features/authentication/email_register/presentation/views/email_verification_screen.dart';
 import 'package:socshea/features/authentication/email_register/presentation/views/register_screen.dart';
 import 'package:socshea/features/authentication/google_auth/data/repositories/google_auth_repo_impl.dart';
 import 'package:socshea/features/authentication/google_auth/presentation/manager/google_auth_cubit/google_auth_cubit.dart';
@@ -13,6 +14,8 @@ import 'package:socshea/utils/dependencies/service_locator.dart';
 abstract class TAppRouter {
   static const kLoginScreen = "/";
   static const kRegisterScreen = '/register';
+  static const kEmailVerificationScreen = '/emailVerification';
+  // static const kSuccessScreen = '/success';
   static final router = GoRouter(
     routes: [
       //---Login
@@ -32,26 +35,44 @@ abstract class TAppRouter {
       //---Register
       GoRoute(
           path: kRegisterScreen,
-          // name: 'register',
           builder: (context, state){
             return MultiBlocProvider(
               providers: [
                 BlocProvider(create: (context) => RegisterEmailCubit(registerRepo: getIt.get<RegisterRepoImpl>())),
                 BlocProvider(create: (context) => GoogleAuthCubit(googleAuthRepo: getIt.get<GoogleAuthRepoImpl>())),
               ],
-              child: const RegisterScreen(),
+              child: BlocConsumer<RegisterEmailCubit, RegisterEmailState>(
+                listener: (context, state){
+                  if(state is RegisterEmailSuccessState){
+                    GoRouter.of(context).push(TAppRouter.kEmailVerificationScreen);
+                  }
+                },
+                builder: (context, state) => const RegisterScreen(),
+              ),
             );
           }
-        // builder: (context, state) => MultiBlocProvider(providers: [
-        //   BlocProvider<PasswordVisibilityCubit>(
-        //       create: (context) => PasswordVisibilityCubit()),
-        //   BlocProvider(
-        //     create: (context) =>
-        //         LoginCubit(loginRepo: getIt.get<LoginRepoImpl>()),
-        //     child: LoginView(),
-        //   )
-        // ], child: LoginView()),
       ),
+
+      //---Email Verification
+      GoRoute(
+          path: kEmailVerificationScreen,
+          builder: (context, state){
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(create: (context) => RegisterEmailCubit(registerRepo: getIt.get<RegisterRepoImpl>())),
+              ],
+              child: const EmailVerificationScreen(),
+            );
+          }
+      ),
+
+      //---Success
+      // GoRoute(
+      //     path: kSuccessScreen,
+      //     builder: (context, state){
+      //       return const SuccessScreen(image: TImages.successfulRegisterAnimation, title: TTexts.yourAccountCreatedTitle, subTitle: TTexts.yourAccountCreatedSubTitle);
+      //     }
+      // ),
     ]
   );
 }

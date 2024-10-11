@@ -9,4 +9,6 @@ abstract class RegisterRepo{
   Future<Either<Failure, void>> saveUser({required UserModel userModel});
 
   Future<Either<Failure, void>> sendEmailVerification();
+
+  Future<bool> checkEmailVerification();
 }

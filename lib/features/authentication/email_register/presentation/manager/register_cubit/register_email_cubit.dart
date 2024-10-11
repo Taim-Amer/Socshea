@@ -21,6 +21,7 @@ class RegisterEmailCubit extends Cubit<RegisterEmailState> {
   final usernameController = TextEditingController();
   final phoneNumberController = TextEditingController();
   bool hidePassword = true;
+  bool isVerified = false;
 
   Future<void> registerWithEmail() async{
     emit(RegisterEmailLoadingState());
@@ -42,5 +43,17 @@ class RegisterEmailCubit extends Cubit<RegisterEmailState> {
             (failure) => emit(RegisterEmailFailureState(failure.errMessage)),
             (success) => emit(RegisterEmailSuccessState()));
 
+  }
+
+  Future<void> sendEmailVerification() async{
+    await registerRepo.sendEmailVerification();
+  }
+
+  Future<bool> checkEmailVerification() async{
+    var response = await registerRepo.checkEmailVerification();
+    if(response == true){
+      isVerified = true;
+    }
+    return isVerified;
   }
 }
