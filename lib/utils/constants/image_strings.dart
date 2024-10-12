@@ -8,6 +8,9 @@ class TImages {
   static const String google = "assets/logos/google-icon.png";
   static const String facebook = "assets/logos/facebook-icon.png";
 
+  // Authentication
+  static const String login = "assets/images/auth/login.png";
+
   // OnBoarding Images
   static const String onBoardingImage1 = "assets/images/on_boarding_images/sammy-line-searching.png";
   static const String onBoardingImage2 = "assets/images/on_boarding_images/sammy-line-shopping.png";
@@ -35,8 +38,6 @@ class TImages {
 
   // User
   static const String user = "assets/images/user/user.png";
-
-  // Brands
 
   // Payment Method
   static const String applePay = "";

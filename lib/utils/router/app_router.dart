@@ -23,6 +23,7 @@ abstract class TAppRouter {
   static const kEmailVerificationSuccessScreen = '/successEmailVerification';
   static const kForgetPasswordScreen = '/kForgetPassword';
   static const kResetPasswordScreen = '/kResetPassword';
+  static const kNavigationMenu = '/kNavigation';
 
   static final router = GoRouter(
     routes: [
@@ -35,7 +36,13 @@ abstract class TAppRouter {
               BlocProvider(create: (context) => LoginCubit(loginRepo: getIt.get<LoginRepoImpl>())),
               BlocProvider(create: (context) => GoogleAuthCubit(googleAuthRepo: getIt.get<GoogleAuthRepoImpl>())),
             ],
-            child: const LoginScreen(),
+            child: BlocConsumer<LoginCubit, LoginState>(
+              listener: (context, state){
+                if(state is LoginSuccessState){
+                  context.go(kNavigationMenu);
+                }
+              },
+              builder: (context, state) => const LoginScreen()),
           );
         }
       ),
@@ -52,7 +59,7 @@ abstract class TAppRouter {
               child: BlocConsumer<RegisterEmailCubit, RegisterEmailState>(
                 listener: (context, state){
                   if(state is RegisterEmailSuccessState){
-                    GoRouter.of(context).push(TAppRouter.kEmailVerificationScreen);
+                    context.push(TAppRouter.kEmailVerificationScreen);
                   }
                 },
                 builder: (context, state) => const RegisterScreen(),
@@ -78,7 +85,12 @@ abstract class TAppRouter {
       GoRoute(
           path: kEmailVerificationSuccessScreen,
           builder: (context, state){
-            return const SuccessScreen(image: TImages.successfulRegisterAnimation, title: TTexts.yourAccountCreatedTitle, subTitle: TTexts.yourAccountCreatedSubTitle);
+            return SuccessScreen(
+              image: TImages.successfulRegisterAnimation,
+              title: TTexts.yourAccountCreatedTitle,
+              subTitle: TTexts.yourAccountCreatedSubTitle,
+              onPressed: () => context.go(kNavigationMenu),
+            );
           }
       ),
 

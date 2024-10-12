@@ -6,6 +6,7 @@ import 'package:socshea/utils/theme/custom_themes/checkbox_theme.dart';
 import 'package:socshea/utils/theme/custom_themes/chip_theme.dart';
 import 'package:socshea/utils/theme/custom_themes/elevated_button_theme.dart';
 import 'package:socshea/utils/theme/custom_themes/outlined_button_theme.dart';
+import 'package:socshea/utils/theme/custom_themes/text_button_theme.dart';
 import 'package:socshea/utils/theme/custom_themes/text_field_theme.dart';
 import 'package:socshea/utils/theme/custom_themes/text_theme.dart';
 
@@ -21,6 +22,7 @@ class TAppTheme {
     chipTheme: TChipTheme.lightChipTheme,
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: TAppBarTheme.lightAppBarTheme,
+    textButtonTheme: TTextButtonTheme.lightTextButtonTheme,
     checkboxTheme: TCheckboxTheme.lightCheckboxTheme,
     bottomSheetTheme: TBottomSheetTheme.lightBottomSheetTheme,
     outlinedButtonTheme: TOutLinedButtonTheme.lightOutLinedButtonTheme,
@@ -37,6 +39,7 @@ class TAppTheme {
     chipTheme: TChipTheme.darkChipTheme,
     scaffoldBackgroundColor: Colors.black,
     appBarTheme: TAppBarTheme.darkAppBarTheme,
+    textButtonTheme: TTextButtonTheme.darkTextButtonTheme,
     checkboxTheme: TCheckboxTheme.darkCheckboxTheme,
     bottomSheetTheme: TBottomSheetTheme.darkBottomSheetTheme,
     outlinedButtonTheme: TOutLinedButtonTheme.darkOutLinedButtonTheme,
