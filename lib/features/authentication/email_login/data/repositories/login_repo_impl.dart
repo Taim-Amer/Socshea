@@ -26,7 +26,6 @@ class LoginRepoImpl implements LoginRepo {
   @override
   Future<void> sendPasswordResetEmail({required String email}) async{
     final resetEmail = await firebaseAuth.sendPasswordResetEmail(email: email);
-    print("================================================");
     return resetEmail;
   }
 }
