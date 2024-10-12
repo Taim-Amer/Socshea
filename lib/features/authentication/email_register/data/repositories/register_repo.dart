@@ -11,4 +11,6 @@ abstract class RegisterRepo{
   Future<Either<Failure, void>> sendEmailVerification();
 
   Future<bool> checkEmailVerification();
+
+  Future<void> signOut();
 }

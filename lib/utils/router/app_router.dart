@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:socshea/common/widgets/success_screen/success_screen.dart';
 import 'package:socshea/features/authentication/email_login/data/repositories/login_repo_impl.dart';
 import 'package:socshea/features/authentication/email_login/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:socshea/features/authentication/email_login/presentation/views/login_screen.dart';
@@ -9,13 +10,16 @@ import 'package:socshea/features/authentication/email_register/presentation/view
 import 'package:socshea/features/authentication/email_register/presentation/views/register_screen.dart';
 import 'package:socshea/features/authentication/google_auth/data/repositories/google_auth_repo_impl.dart';
 import 'package:socshea/features/authentication/google_auth/presentation/manager/google_auth_cubit/google_auth_cubit.dart';
+import 'package:socshea/utils/constants/image_strings.dart';
+import 'package:socshea/utils/constants/text_strings.dart';
 import 'package:socshea/utils/dependencies/service_locator.dart';
 
 abstract class TAppRouter {
   static const kLoginScreen = "/";
   static const kRegisterScreen = '/register';
   static const kEmailVerificationScreen = '/emailVerification';
-  // static const kSuccessScreen = '/success';
+  static const kEmailVerificationSuccessScreen = '/successEmailVerification';
+
   static final router = GoRouter(
     routes: [
       //---Login
@@ -66,13 +70,13 @@ abstract class TAppRouter {
           }
       ),
 
-      //---Success
-      // GoRoute(
-      //     path: kSuccessScreen,
-      //     builder: (context, state){
-      //       return const SuccessScreen(image: TImages.successfulRegisterAnimation, title: TTexts.yourAccountCreatedTitle, subTitle: TTexts.yourAccountCreatedSubTitle);
-      //     }
-      // ),
+      //---Email Verification Success
+      GoRoute(
+          path: kEmailVerificationSuccessScreen,
+          builder: (context, state){
+            return const SuccessScreen(image: TImages.successfulRegisterAnimation, title: TTexts.yourAccountCreatedTitle, subTitle: TTexts.yourAccountCreatedSubTitle);
+          }
+      ),
     ]
   );
 }

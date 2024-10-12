@@ -1,11 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
-import "package:socshea/common/widgets/success_screen/success_screen.dart";
+import "package:go_router/go_router.dart";
 import "package:socshea/features/authentication/email_register/presentation/manager/register_cubit/register_email_cubit.dart";
 import "package:socshea/utils/constants/image_strings.dart";
 import "package:socshea/utils/constants/sizes.dart";
 import "package:socshea/utils/constants/text_strings.dart";
 import "package:socshea/utils/helpers/helper_functions.dart";
+import "package:socshea/utils/router/app_router.dart";
 
 class EmailVerificationScreen extends StatelessWidget {
   const EmailVerificationScreen({super.key, this.email});
@@ -18,7 +21,7 @@ class EmailVerificationScreen extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(onPressed: (){}, icon: const Icon(CupertinoIcons.clear))
+          IconButton(onPressed: () => RegisterEmailCubit.get(context).signOut(), icon: const Icon(CupertinoIcons.clear))
         ],
       ),
       body: SingleChildScrollView(
@@ -40,14 +43,16 @@ class EmailVerificationScreen extends StatelessWidget {
 
               //buttons
               SizedBox(width: double.infinity, child: ElevatedButton(
-                onPressed: (){
-                  RegisterEmailCubit.get(context).checkEmailVerification();
-                  if(RegisterEmailCubit.get(context).isVerified == true){
-                    const SuccessScreen(image: TImages.successfulRegisterAnimation, title: TTexts.yourAccountCreatedTitle, subTitle: TTexts.yourAccountCreatedSubTitle);
-                  }
-                },
+                onPressed: () async {
+                    await RegisterEmailCubit.get(context).checkEmailVerification().then((isVerified) {
+                      if (isVerified) {
+                        context.go(TAppRouter.kEmailVerificationSuccessScreen);
+                      }
+                    });
+                  },
                 child: const Text(TTexts.tContinue))),
               const SizedBox(height: TSizes.spaceBtwItems,),
+
               SizedBox(width: double.infinity, child: TextButton(
                 onPressed: () => RegisterEmailCubit.get(context).sendEmailVerification(),
                 child: const Text(TTexts.resendEmail),

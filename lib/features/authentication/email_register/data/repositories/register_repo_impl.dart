@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:socshea/features/authentication/email_register/data/models/user_model.dart';
 import 'package:socshea/features/authentication/email_register/data/repositories/register_repo.dart';
 import 'package:socshea/utils/exceptions/failures.dart';
+import 'package:dartz/dartz.dart';
 
 class RegisterRepoImpl implements RegisterRepo{
   final FirebaseAuth firebaseAuth;
@@ -59,8 +59,14 @@ class RegisterRepoImpl implements RegisterRepo{
 
   @override
   Future<bool> checkEmailVerification() async{
+    await firebaseAuth.currentUser?.reload();
     final currentUser = firebaseAuth.currentUser;
     if(currentUser != null && currentUser.emailVerified) return true;
     return false;
+  }
+
+  @override
+  Future<void> signOut() async{
+    await firebaseAuth.signOut();
   }
 }

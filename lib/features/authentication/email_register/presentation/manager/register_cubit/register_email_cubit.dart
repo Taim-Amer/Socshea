@@ -56,4 +56,8 @@ class RegisterEmailCubit extends Cubit<RegisterEmailState> {
     }
     return isVerified;
   }
+
+  Future<void> signOut() async{
+    await registerRepo.signOut();
+  }
 }

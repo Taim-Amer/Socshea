@@ -34,7 +34,7 @@ class SuccessScreen extends StatelessWidget {
               //button
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(onPressed: onPressed, child: const Text(TTexts.tContinue),),
+                child: ElevatedButton(onPressed: onPressed, child: const Text(TTexts.tContinue)),
               )
             ],
           ),
