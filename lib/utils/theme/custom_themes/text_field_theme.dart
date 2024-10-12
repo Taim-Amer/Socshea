@@ -7,7 +7,6 @@ class TTextFieldTheme {
     errorMaxLines: 3,
     prefixIconColor: Colors.grey,
     suffixIconColor: Colors.grey,
-    // constraints: BoxConstraints.expand(height: 14.inputFieldHeight),
     labelStyle: const TextStyle().copyWith(fontSize: 14, color: Colors.black),
     hintStyle: const TextStyle().copyWith(fontSize: 14, color: Colors.black),
     errorStyle: const TextStyle().copyWith(fontWeight: FontWeight.normal),
@@ -64,6 +63,5 @@ class TTextFieldTheme {
         borderRadius: BorderRadius.circular(14),
         borderSide: const BorderSide(width: 2, color: Colors.orange)
     ),
-
   );
 }

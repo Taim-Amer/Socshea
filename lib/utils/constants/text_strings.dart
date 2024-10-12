@@ -55,5 +55,4 @@ class TTexts {
   static const String emailNotReceivedMessage = "Didn't receive the email? Check your spam folder or click to resend it.";
   static const String yourAccountCreatedTitle = "Your Socshea Account is Ready!";
   static const String yourAccountCreatedSubTitle = "Welcome to Socshea - Start Connecting, Sharing, and Discovering the World Around You!";
-
 }

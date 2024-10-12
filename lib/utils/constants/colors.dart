@@ -34,7 +34,8 @@ class TColors {
   static Color darkContainer = Colors.white.withOpacity(.1);
 
   // Button Colors
-  static const Color buttonPrimary = Color(0xFF4B68FF);
+  // static const Color buttonPrimary = Color(0xFF4B68FF);
+  static const Color buttonPrimary = Colors.lightGreen;
   static const Color buttonSecondary = Color(0xFF6C7570);
   static const Color buttonDisabled = Color(0xFFC4C4C4);
 
