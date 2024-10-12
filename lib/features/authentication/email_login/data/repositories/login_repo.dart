@@ -4,5 +4,7 @@ import 'package:socshea/utils/exceptions/failures.dart';
 
 abstract class LoginRepo {
   Future<Either<Failure, UserCredential>> login({required String email, required String password});
+
+  Future<void> sendPasswordResetEmail({required String email});
 }
 

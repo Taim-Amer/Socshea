@@ -13,7 +13,6 @@ class LoginCubit extends Cubit<LoginState> {
 
   final LoginRepo loginRepo;
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   late bool hidePassword = true;
@@ -30,6 +29,15 @@ class LoginCubit extends Cubit<LoginState> {
             (failure) => emit(LoginFailureState(failure.errMessage)),
             (success) => emit(LoginSuccessState()));
 
+  }
+
+  Future<void> sendPasswordResetEmail() async{
+    final isConnected = await TNetworkManager.instance.isConnected();
+    if(!isConnected) return;
+
+    if(!loginFormKey.currentState!.validate()) return;
+
+    await loginRepo.sendPasswordResetEmail(email: emailController.text.trim());
   }
 
   void changePasswordVisibility(){

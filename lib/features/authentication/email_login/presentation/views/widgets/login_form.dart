@@ -51,7 +51,7 @@ class TLoginForm extends StatelessWidget {
                   ],
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () => context.go(TAppRouter.kForgetPasswordScreen),
                   child: const Text(TTexts.forgetPassword),
                 ),
               ],
@@ -70,7 +70,7 @@ class TLoginForm extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: OutlinedButton(
-                    onPressed: () => GoRouter.of(context).push(TAppRouter.kRegisterScreen),
+                    onPressed: () => context.go(TAppRouter.kRegisterScreen),
                     child: const Text(TTexts.createAccount),
                   ),
                 ),

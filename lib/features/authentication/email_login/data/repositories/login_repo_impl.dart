@@ -22,4 +22,11 @@ class LoginRepoImpl implements LoginRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<void> sendPasswordResetEmail({required String email}) async{
+    final resetEmail = await firebaseAuth.sendPasswordResetEmail(email: email);
+    print("================================================");
+    return resetEmail;
+  }
 }

@@ -3,7 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:socshea/common/widgets/success_screen/success_screen.dart';
 import 'package:socshea/features/authentication/email_login/data/repositories/login_repo_impl.dart';
 import 'package:socshea/features/authentication/email_login/presentation/manager/login_cubit/login_cubit.dart';
+import 'package:socshea/features/authentication/email_login/presentation/views/forget_password_screen.dart';
 import 'package:socshea/features/authentication/email_login/presentation/views/login_screen.dart';
+import 'package:socshea/features/authentication/email_login/presentation/views/reset_password_screen.dart';
 import 'package:socshea/features/authentication/email_register/data/repositories/register_repo_impl.dart';
 import 'package:socshea/features/authentication/email_register/presentation/manager/register_cubit/register_email_cubit.dart';
 import 'package:socshea/features/authentication/email_register/presentation/views/email_verification_screen.dart';
@@ -19,6 +21,8 @@ abstract class TAppRouter {
   static const kRegisterScreen = '/register';
   static const kEmailVerificationScreen = '/emailVerification';
   static const kEmailVerificationSuccessScreen = '/successEmailVerification';
+  static const kForgetPasswordScreen = '/kForgetPassword';
+  static const kResetPasswordScreen = '/kResetPassword';
 
   static final router = GoRouter(
     routes: [
@@ -75,6 +79,22 @@ abstract class TAppRouter {
           path: kEmailVerificationSuccessScreen,
           builder: (context, state){
             return const SuccessScreen(image: TImages.successfulRegisterAnimation, title: TTexts.yourAccountCreatedTitle, subTitle: TTexts.yourAccountCreatedSubTitle);
+          }
+      ),
+
+      //---Forget Password
+      GoRoute(
+          path: kForgetPasswordScreen,
+          builder: (context, state){
+            return BlocProvider(create: (context) => LoginCubit(loginRepo: getIt.get<LoginRepoImpl>()), child: const ForgetPasswordScreen());
+          }
+      ),
+
+      //---Reset Password
+      GoRoute(
+          path: kResetPasswordScreen,
+          builder: (context, state){
+            return BlocProvider(create: (context) => LoginCubit(loginRepo: getIt.get<LoginRepoImpl>()), child: const ResetPasswordScreen());
           }
       ),
     ]
