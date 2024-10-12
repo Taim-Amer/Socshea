@@ -1,18 +1,18 @@
 import "package:flutter/material.dart";
 import "package:iconsax/iconsax.dart";
-import "package:socshea/common/widgets/texts/brand_title_text.dart";
+import "package:socshea/common/widgets/texts/sub_title_text.dart";
 import "package:socshea/utils/constants/colors.dart";
 import "package:socshea/utils/constants/enums.dart";
 import "package:socshea/utils/constants/sizes.dart";
 
-class TBrandTitleWithVerifiedIcon extends StatelessWidget {
-  const TBrandTitleWithVerifiedIcon({
+class TTextWithVerifiedIcon extends StatelessWidget {
+  const TTextWithVerifiedIcon({
     super.key,
     this.maxLines = 1,
     this.textColor,
     this.iconColor = TColors.primary,
     this.textAlign = TextAlign.center,
-    this.brandTextSize = TextSizes.small,
+    this.brandTextSize = TextSizes.medium,
     required this.title,
   });
 
@@ -28,7 +28,7 @@ class TBrandTitleWithVerifiedIcon extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Flexible(
-          child: TBrandTitleText(
+          child: TSubTitleText(
             title: title,
             color: textColor,
             maxLines: maxLines,

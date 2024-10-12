@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:socshea/utils/constants/enums.dart';
 
-class TBrandTitleText extends StatelessWidget {
-  const TBrandTitleText({
+class TSubTitleText extends StatelessWidget {
+  const TSubTitleText({
     super.key,
     this.color,
     required this.title,
