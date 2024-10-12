@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:socshea/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:socshea/common/widgets/images/circular_image.dart';
-import 'package:socshea/common/widgets/texts/brand_title_text_with_verified_icon.dart';
+import 'package:socshea/common/widgets/texts/text_with_verified_icon.dart';
 import 'package:socshea/utils/constants/colors.dart';
 import 'package:socshea/utils/constants/enums.dart';
 import 'package:socshea/utils/constants/image_strings.dart';
@@ -39,7 +39,7 @@ class TBrandCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const TBrandTitleWithVerifiedIcon(title: "Nike", brandTextSize: TextSizes.large),
+                  const TTextWithVerifiedIcon(title: "Nike", brandTextSize: TextSizes.large),
                   Text(
                     "256 products",
                     overflow: TextOverflow.ellipsis,

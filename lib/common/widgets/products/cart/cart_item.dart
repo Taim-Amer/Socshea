@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socshea/common/widgets/images/rounded_image.dart';
-import 'package:socshea/common/widgets/texts/brand_title_text_with_verified_icon.dart';
+import 'package:socshea/common/widgets/texts/text_with_verified_icon.dart';
 import 'package:socshea/common/widgets/texts/product_title_text.dart';
 import 'package:socshea/utils/constants/colors.dart';
 import 'package:socshea/utils/constants/image_strings.dart';
@@ -29,7 +29,7 @@ class TItemCart extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const TBrandTitleWithVerifiedIcon(title: "Nike"),
+            const TTextWithVerifiedIcon(title: "Nike"),
             const Flexible(child: TProductTitleText(title: "Black Sport Shoes", maxLines: 1)),
 
             Text.rich(

@@ -4,7 +4,7 @@ import 'package:socshea/common/styles/shadows.dart';
 import 'package:socshea/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:socshea/common/widgets/icons/circular_icon.dart';
 import 'package:socshea/common/widgets/images/rounded_image.dart';
-import 'package:socshea/common/widgets/texts/brand_title_text_with_verified_icon.dart';
+import 'package:socshea/common/widgets/texts/text_with_verified_icon.dart';
 import 'package:socshea/common/widgets/texts/product_price_text.dart';
 import 'package:socshea/common/widgets/texts/product_title_text.dart';
 import 'package:socshea/utils/constants/colors.dart';
@@ -65,7 +65,7 @@ class TProductCardVertical extends StatelessWidget {
                   children: [
                     TProductTitleText(title: "Green Nike Air Shoes", smallSize: true),
                     SizedBox(height: TSizes.spaceBtwItems / 2),
-                    TBrandTitleWithVerifiedIcon(title: "Nike",),
+                    TTextWithVerifiedIcon(title: "Nike",),
                   ],
                 ),
               ),

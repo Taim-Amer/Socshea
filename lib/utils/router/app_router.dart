@@ -12,6 +12,7 @@ import 'package:socshea/features/authentication/email_register/presentation/view
 import 'package:socshea/features/authentication/email_register/presentation/views/register_screen.dart';
 import 'package:socshea/features/authentication/google_auth/data/repositories/google_auth_repo_impl.dart';
 import 'package:socshea/features/authentication/google_auth/presentation/manager/google_auth_cubit/google_auth_cubit.dart';
+import 'package:socshea/navigation_menu.dart';
 import 'package:socshea/utils/constants/image_strings.dart';
 import 'package:socshea/utils/constants/text_strings.dart';
 import 'package:socshea/utils/dependencies/service_locator.dart';
@@ -108,6 +109,15 @@ abstract class TAppRouter {
           builder: (context, state){
             return BlocProvider(create: (context) => LoginCubit(loginRepo: getIt.get<LoginRepoImpl>()), child: const ResetPasswordScreen());
           }
+      ),
+
+      //---Navigation Menu
+      GoRoute(
+          path: kNavigationMenu,
+          builder: (context, state) => BlocProvider(
+            create: (context) => NavigationCubit(),
+            child: const NavigationMenu(),
+          ),
       ),
     ]
   );
