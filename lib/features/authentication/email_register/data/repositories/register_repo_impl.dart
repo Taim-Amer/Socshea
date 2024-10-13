@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:socshea/features/authentication/email_register/data/models/user_model.dart';
 import 'package:socshea/features/authentication/email_register/data/repositories/register_repo.dart';
+import 'package:socshea/utils/constants/image_strings.dart';
 import 'package:socshea/utils/exceptions/failures.dart';
 import 'package:dartz/dartz.dart';
 
@@ -20,7 +21,7 @@ class RegisterRepoImpl implements RegisterRepo{
 
       await sendEmailVerification();
 
-      final newUser = UserModel(uID: userCredential.user!.uid, firstName: firstName, lastName: lastName, username: username, phone: phone, email: email);
+      final newUser = UserModel(uID: userCredential.user!.uid, firstName: firstName, lastName: lastName, username: username, phone: phone, email: email, image: TImages.user);
       await saveUser(userModel: newUser);
       
       return(Right(userCredential));

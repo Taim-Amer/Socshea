@@ -33,7 +33,7 @@ class TTextWithVerifiedIcon extends StatelessWidget {
             color: textColor,
             maxLines: maxLines,
             textAlign: textAlign,
-            brandTextSize: brandTextSize!,
+            textSize: brandTextSize!,
           ),
         ),
         const SizedBox(width: TSizes.xs),
