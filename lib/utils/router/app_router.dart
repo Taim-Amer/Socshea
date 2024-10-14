@@ -119,6 +119,7 @@ abstract class TAppRouter {
             child: const NavigationMenu(),
           ),
       ),
+      
     ]
   );
 }

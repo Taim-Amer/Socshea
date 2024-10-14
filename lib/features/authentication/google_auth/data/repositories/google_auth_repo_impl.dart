@@ -19,15 +19,25 @@ class GoogleAuthRepoImpl implements GoogleAuthRepo {
   });
 
   @override
-  Future<Either<Failure, UserCredential>> googleAuthentication() async {
+  Future<Either<Failure, GoogleSignInAccount>> selectGoogleAccount() async {
     try {
-      await googleSignIn.signOut();
+      await googleSignIn.signOut(); // Optional: Ensure fresh sign-in
 
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       if (googleUser == null) {
         return Left(ServerFailure("Google Sign-In was canceled"));
       }
+      return Right(googleUser);
+    } on FirebaseAuthException catch (e) {
+      return Left(ServerFailure(e.message ?? "Google Sign-In Error"));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
 
+  @override
+  Future<Either<Failure, UserCredential>> authenticateWithGoogle(GoogleSignInAccount googleUser) async {
+    try {
       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
@@ -65,7 +75,7 @@ class GoogleAuthRepoImpl implements GoogleAuthRepo {
       username: user.displayName!,
       phone: user.phoneNumber ?? "0934567890",
       email: user.email ?? "",
-      image: user.photoURL ?? TImages.user
+      image: user.photoURL ?? TImages.user,
     );
 
     final userDoc = firebaseFirestore.collection("users").doc(userModel.uID);
@@ -77,5 +87,4 @@ class GoogleAuthRepoImpl implements GoogleAuthRepo {
       await userDoc.update({"lastSignIn": FieldValue.serverTimestamp()});
     }
   }
-
 }

@@ -17,13 +17,15 @@ class TSocialButtons extends StatelessWidget {
       children: [
         BlocConsumer<GoogleAuthCubit, GoogleAuthState>(
           listener: (context, state){
-            state is GoogleAuthSuccessState ? context.go(TAppRouter.kNavigationMenu) : (){};
+            if(state is GoogleAuthSuccessState) {
+              context.go(TAppRouter.kNavigationMenu);
+            }
           },
           builder: (context, state){
             return Container(
               decoration: BoxDecoration(border: Border.all(color: TColors.grey,), borderRadius: BorderRadius.circular(100)),
               child: IconButton(
-                onPressed: () => GoogleAuthCubit.get(context).googleAuthentication(),
+                onPressed: () => GoogleAuthCubit.get(context).googleAuthentication(context),
                 icon: const Image(
                   width: TSizes.iconMd,
                   height: TSizes.iconMd,

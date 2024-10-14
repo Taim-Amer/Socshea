@@ -12,7 +12,7 @@ class NavigationMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final darkMode = THelperFunctions.isDarkMode(context);
+    final dark = THelperFunctions.isDarkMode(context);
 
     return Scaffold(
       bottomNavigationBar: BlocBuilder<NavigationCubit, int>(
@@ -22,14 +22,14 @@ class NavigationMenu extends StatelessWidget {
             elevation: 0,
             selectedIndex: selectedIndex,
             onDestinationSelected: (index) => context.read<NavigationCubit>().setIndex(index),
-            backgroundColor: darkMode ? Colors.black : TColors.white,
-            indicatorColor: darkMode ? TColors.white.withOpacity(.1) : TColors.black.withOpacity(.1),
+            backgroundColor: dark ? TColors.black : TColors.white,
+            indicatorColor: dark ? TColors.white.withOpacity(.1) : TColors.black.withOpacity(.1),
             destinations: const [
-              NavigationDestination(icon: Icon(Iconsax.home, size: TSizes.iconLg,), label: ""),
-              NavigationDestination(icon: Icon(Iconsax.global, size: TSizes.iconLg,), label: ""),
-              NavigationDestination(icon: Icon(Icons.add_circle_outline, size: TSizes.iconLg,), label: ""),
-              NavigationDestination(icon: Icon(Iconsax.notification, size: TSizes.iconLg,), label: ""),
-              NavigationDestination(icon: Icon(Iconsax.user, size: TSizes.iconLg,), label: ""),
+              NavigationDestination(icon: Icon(Iconsax.home, size: TSizes.iconMd,), label: ""),
+              NavigationDestination(icon: Icon(Iconsax.video, size: TSizes.iconMd,), label: ""),
+              NavigationDestination(icon: Icon(Icons.add_circle_outline, size: TSizes.iconMd,), label: ""),
+              NavigationDestination(icon: Icon(Iconsax.notification, size: TSizes.iconMd,), label: ""),
+              NavigationDestination(icon: Icon(Iconsax.profile_2user, size: TSizes.iconMd,), label: ""),
             ],
           );
         },
@@ -42,10 +42,6 @@ class NavigationMenu extends StatelessWidget {
             Container(color: Colors.greenAccent,),
             Container(color: Colors.blueAccent,),
             const ProfileScreen(),
-            // const HomeScreen(),
-            // const StoreScreen(),
-            // const FavouriteScreen(),
-            // const SettingScreen()
           ];
           return screens[selectedIndex];
         },

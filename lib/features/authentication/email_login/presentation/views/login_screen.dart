@@ -5,6 +5,7 @@ import 'package:socshea/common/widgets/login_signup/form_divider.dart';
 import 'package:socshea/common/widgets/login_signup/social_buttons.dart';
 import 'package:socshea/features/authentication/email_login/presentation/views/widgets/login_form.dart';
 import 'package:socshea/features/authentication/email_login/presentation/views/widgets/login_header.dart';
+import 'package:socshea/navigation_menu.dart';
 import 'package:socshea/utils/constants/sizes.dart';
 import 'package:socshea/utils/constants/text_strings.dart';
 
@@ -28,20 +29,22 @@ class LoginScreen extends StatelessWidget {
 
               //Divider
               TFormDivider(dividerText: TTexts.orSignInWith.capitalize!,),
+              // const SizedBox(height: TSizes.spaceBtwSections,),
+              //
+              // SizedBox(
+              //   width: double.infinity,
+              //   child: ElevatedButton(onPressed: () => Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => const NavigationMenu(),
+              //       )), child: const Text("Navigation Menu")),
+              // ),
+
               const SizedBox(height: TSizes.spaceBtwSections,),
 
               //Footer
               const TSocialButtons(),
 
-              // const SizedBox(height: TSizes.spaceBtwSections,),
-
-              // ElevatedButton(onPressed: (){
-              //   Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //       builder: (context) => const NavigationMenu(),
-              //   ));
-              // }, child: const Text("data"))
             ],
           ),
         ),

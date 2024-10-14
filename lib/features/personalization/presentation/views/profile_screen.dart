@@ -18,7 +18,6 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = TDeviceUtils.getScreenHeight(context);
     return Scaffold(
       appBar: const TAppBar(),
       body: SingleChildScrollView(
@@ -32,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
                 TProfileImage()
               ],
             ),
-            SizedBox(height: screenHeight * 0.1),
+            SizedBox(height: TDeviceUtils.getScreenHeight(context) * 0.1),
             const TNameText(),
             const SizedBox(height: TSizes.spaceBtwItems),
             const TBioText(),
