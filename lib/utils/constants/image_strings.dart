@@ -39,6 +39,8 @@ class TImages {
 
   // User
   static const String user = "assets/images/user/user.png";
+  static const String profile = "assets/images/user/profile-pic.png";
+  static const String cover = "assets/images/user/cover.jpg";
 
   // Payment Method
   static const String applePay = "";

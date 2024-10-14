@@ -33,12 +33,16 @@ class TCircularImage extends StatelessWidget {
       padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
         color: backgroundColor ?? (dark ? TColors.black : TColors.white),
-        borderRadius: BorderRadius.circular(100),
+        shape: BoxShape.circle,
       ),
-      child: Image(
-        fit: fit,
-        image: isNetworkImage ? NetworkImage(image) : AssetImage(image) as ImageProvider,
-        color: overlayColor,
+      child: ClipOval(
+        child: Image(
+          width: width - 2 * padding,
+          height: height - 2 * padding,
+          fit: fit,
+          image: isNetworkImage ? NetworkImage(image) : AssetImage(image) as ImageProvider,
+          color: overlayColor,
+        ),
       ),
     );
   }

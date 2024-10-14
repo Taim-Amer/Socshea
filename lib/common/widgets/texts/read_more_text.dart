@@ -21,8 +21,8 @@ class TReadMoreText extends StatelessWidget {
       text,
       trimLines: trimLines,
       trimMode: TrimMode.Line,
-      trimCollapsedText: 'more',
-      trimExpandedText: 'less',
+      trimCollapsedText: 'see more',
+      trimExpandedText: 'see less',
       style: textStyle ?? Theme.of(context).textTheme.bodyMedium,
       colorClickableText: moreLessColor ?? Theme.of(context).primaryColor,
       moreStyle: TextStyle(

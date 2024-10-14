@@ -59,7 +59,7 @@ class TSizes {
   static const double cardElevation = 2;
 
   // Image carousel height
-  static const double imageCarouselHeight  = 200;
+  static const double imageCarouselHeight  = 250;
 
   // Loading indicator size
   static const double loadingIndicatorSize  = 36;

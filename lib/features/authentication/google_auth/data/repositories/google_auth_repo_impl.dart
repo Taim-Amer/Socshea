@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:socshea/features/authentication/email_register/data/models/user_model.dart';
 import 'package:socshea/features/authentication/google_auth/data/repositories/google_auth_repo.dart';
+import 'package:socshea/utils/constants/image_strings.dart';
 import 'package:socshea/utils/exceptions/failures.dart';
 
 class GoogleAuthRepoImpl implements GoogleAuthRepo {
@@ -64,6 +65,7 @@ class GoogleAuthRepoImpl implements GoogleAuthRepo {
       username: user.displayName!,
       phone: user.phoneNumber ?? "0934567890",
       email: user.email ?? "",
+      image: user.photoURL ?? TImages.user
     );
 
     final userDoc = firebaseFirestore.collection("users").doc(userModel.uID);

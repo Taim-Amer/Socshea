@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:socshea/features/personalization/presentation/views/profile_screen.dart';
 import 'package:socshea/features/social/feeds/presentation/views/feeds_screen.dart';
 import 'package:socshea/utils/constants/colors.dart';
 import 'package:socshea/utils/constants/sizes.dart';
@@ -21,7 +22,7 @@ class NavigationMenu extends StatelessWidget {
             elevation: 0,
             selectedIndex: selectedIndex,
             onDestinationSelected: (index) => context.read<NavigationCubit>().setIndex(index),
-            backgroundColor: darkMode ? TColors.black : TColors.white,
+            backgroundColor: darkMode ? Colors.black : TColors.white,
             indicatorColor: darkMode ? TColors.white.withOpacity(.1) : TColors.black.withOpacity(.1),
             destinations: const [
               NavigationDestination(icon: Icon(Iconsax.home, size: TSizes.iconLg,), label: ""),
@@ -40,7 +41,7 @@ class NavigationMenu extends StatelessWidget {
             Container(color: Colors.redAccent,),
             Container(color: Colors.greenAccent,),
             Container(color: Colors.blueAccent,),
-            Container(color: Colors.blueAccent,),
+            const ProfileScreen(),
             // const HomeScreen(),
             // const StoreScreen(),
             // const FavouriteScreen(),

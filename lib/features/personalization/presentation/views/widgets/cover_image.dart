@@ -3,8 +3,8 @@ import 'package:socshea/common/widgets/images/rounded_image.dart';
 import 'package:socshea/utils/constants/image_strings.dart';
 import 'package:socshea/utils/constants/sizes.dart';
 
-class TProfileCoverImage extends StatelessWidget {
-  const TProfileCoverImage({super.key});
+class TCoverImage extends StatelessWidget {
+  const TCoverImage({super.key});
 
   @override
   Widget build(BuildContext context) {
