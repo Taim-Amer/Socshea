@@ -29,16 +29,16 @@ class LoginScreen extends StatelessWidget {
 
               //Divider
               TFormDivider(dividerText: TTexts.orSignInWith.capitalize!,),
-              // const SizedBox(height: TSizes.spaceBtwSections,),
-              //
-              // SizedBox(
-              //   width: double.infinity,
-              //   child: ElevatedButton(onPressed: () => Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => const NavigationMenu(),
-              //       )), child: const Text("Navigation Menu")),
-              // ),
+              const SizedBox(height: TSizes.spaceBtwSections,),
+
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const NavigationMenu(),
+                    )), child: const Text("Navigation Menu")),
+              ),
 
               const SizedBox(height: TSizes.spaceBtwSections,),
 

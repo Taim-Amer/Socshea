@@ -7,6 +7,7 @@ abstract class GoogleAuthRepo{
   // Future<Either<Failure, UserCredential>> googleAuthentication();
 
   Future<Either<Failure, GoogleSignInAccount>> selectGoogleAccount();
+
   Future<Either<Failure, UserCredential>> authenticateWithGoogle(GoogleSignInAccount googleUser);
 
   Future<void> saveUser(User user);
