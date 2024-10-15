@@ -21,7 +21,7 @@ class GoogleAuthRepoImpl implements GoogleAuthRepo {
   @override
   Future<Either<Failure, GoogleSignInAccount>> selectGoogleAccount() async {
     try {
-      await googleSignIn.signOut(); // Optional: Ensure fresh sign-in
+      await googleSignIn.signOut();
 
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       if (googleUser == null) {
@@ -36,7 +36,8 @@ class GoogleAuthRepoImpl implements GoogleAuthRepo {
   }
 
   @override
-  Future<Either<Failure, UserCredential>> authenticateWithGoogle(GoogleSignInAccount googleUser) async {
+  @override
+  Future<Either<Failure, UserModel>> authenticateWithGoogle(GoogleSignInAccount googleUser) async {
     try {
       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
@@ -45,13 +46,25 @@ class GoogleAuthRepoImpl implements GoogleAuthRepo {
       );
 
       final UserCredential userCredential = await firebaseAuth.signInWithCredential(credential);
-      final user = userCredential.user;
+      final User? user = userCredential.user;
 
       if (user != null) {
-        await saveUser(user);
-      }
+        final UserModel userModel = UserModel(
+          uID: user.uid,
+          firstName: user.displayName?.split(' ').first ?? '',
+          lastName: user.displayName?.split(' ').skip(1).join(' ') ?? '',
+          username: user.displayName ?? '',
+          phone: user.phoneNumber ?? "0934567890",
+          email: user.email ?? "",
+          image: user.photoURL ?? TImages.user,
+        );
 
-      return Right(userCredential);
+        await saveUser(user);
+
+        return Right(userModel);
+      } else {
+        return Left(ServerFailure("User data not available"));
+      }
     } on FirebaseAuthException catch (e) {
       return Left(ServerFailure(e.message ?? "Google Sign-In Error"));
     } on FirebaseException catch (e) {

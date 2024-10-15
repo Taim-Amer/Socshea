@@ -12,7 +12,7 @@ class RegisterRepoImpl implements RegisterRepo{
   RegisterRepoImpl({required this.firebaseFireStore, required this.firebaseAuth});
 
   @override
-  Future<Either<Failure, UserCredential>> registerWithEmail({required String firstName, required String lastName, required String username, required String phone, required String email, required String password}) async{
+  Future<Either<Failure, UserModel>> registerWithEmail({required String firstName, required String lastName, required String username, required String phone, required String email, required String password}) async{
     try {
       final UserCredential userCredential = await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
@@ -24,7 +24,7 @@ class RegisterRepoImpl implements RegisterRepo{
       final newUser = UserModel(uID: userCredential.user!.uid, firstName: firstName, lastName: lastName, username: username, phone: phone, email: email, image: TImages.user);
       await saveUser(userModel: newUser);
       
-      return(Right(userCredential));
+      return(Right(newUser));
     } on FirebaseAuthException catch (e) {
       return Left(ServerFailure(e.message ?? "Authentication Error"));
     } on FirebaseException catch (e) {

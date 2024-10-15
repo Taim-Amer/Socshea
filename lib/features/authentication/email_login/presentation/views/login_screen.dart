@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:socshea/common/styles/spacing_styles.dart';
 import 'package:socshea/common/widgets/login_signup/form_divider.dart';
 import 'package:socshea/common/widgets/login_signup/social_buttons.dart';
 import 'package:socshea/features/authentication/email_login/presentation/views/widgets/login_form.dart';
 import 'package:socshea/features/authentication/email_login/presentation/views/widgets/login_header.dart';
-import 'package:socshea/navigation_menu.dart';
 import 'package:socshea/utils/constants/sizes.dart';
 import 'package:socshea/utils/constants/text_strings.dart';
 
@@ -33,11 +33,7 @@ class LoginScreen extends StatelessWidget {
 
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const NavigationMenu(),
-                    )), child: const Text("Navigation Menu")),
+                child: ElevatedButton(onPressed: () {}, child: const Text("Navigation Menu")),
               ),
 
               const SizedBox(height: TSizes.spaceBtwSections,),

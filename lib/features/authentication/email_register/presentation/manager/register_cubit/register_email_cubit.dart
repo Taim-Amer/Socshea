@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:socshea/features/authentication/email_register/data/models/user_model.dart';
 import 'package:socshea/features/authentication/email_register/data/repositories/register_repo.dart';
 import 'package:socshea/utils/network/network_manager.dart';
 
@@ -41,7 +42,7 @@ class RegisterEmailCubit extends Cubit<RegisterEmailState> {
 
     response.fold(
             (failure) => emit(RegisterEmailFailureState(failure.errMessage)),
-            (success) => emit(RegisterEmailSuccessState()));
+            (success) => emit(RegisterEmailSuccessState(success)));
 
   }
 

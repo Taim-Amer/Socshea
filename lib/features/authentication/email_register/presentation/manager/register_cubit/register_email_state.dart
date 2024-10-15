@@ -13,7 +13,13 @@ class RegisterInitial extends RegisterEmailState {}
 // --Register
 class RegisterEmailLoadingState extends RegisterEmailState {}
 
-class RegisterEmailSuccessState extends RegisterEmailState {}
+class RegisterEmailSuccessState extends RegisterEmailState {
+  final UserModel userModel;
+  const RegisterEmailSuccessState(this.userModel);
+
+  @override
+  List<Object> get props => [userModel];
+}
 
 class RegisterEmailFailureState extends RegisterEmailState {
   final String error;

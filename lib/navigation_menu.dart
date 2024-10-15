@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:socshea/features/personalization/presentation/views/profile_screen.dart';
+import 'package:socshea/features/authentication/email_register/data/models/user_model.dart';
+import 'package:socshea/features/personalization/profile/presentation/views/profile_screen.dart';
 import 'package:socshea/features/social/feeds/presentation/views/feeds_screen.dart';
 import 'package:socshea/utils/constants/colors.dart';
 import 'package:socshea/utils/constants/sizes.dart';
 import 'package:socshea/utils/helpers/helper_functions.dart';
 
 class NavigationMenu extends StatelessWidget {
-  const NavigationMenu({super.key});
+  const NavigationMenu({super.key, required this.userModel});
+
+  final UserModel userModel;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,7 @@ class NavigationMenu extends StatelessWidget {
             Container(color: Colors.redAccent,),
             Container(color: Colors.greenAccent,),
             Container(color: Colors.blueAccent,),
-            const ProfileScreen(),
+            ProfileScreen(userModel: userModel),
           ];
           return screens[selectedIndex];
         },

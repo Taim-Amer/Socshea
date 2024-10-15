@@ -10,7 +10,13 @@ class GoogleAuthInitial extends GoogleAuthState {}
 
 class GoogleAuthLoadingState extends GoogleAuthState {}
 
-class GoogleAuthSuccessState extends GoogleAuthState {}
+class GoogleAuthSuccessState extends GoogleAuthState {
+  final UserModel userModel;
+  GoogleAuthSuccessState(this.userModel);
+
+  @override
+  List<Object> get props => [userModel];
+}
 
 class GoogleAuthFailureState extends GoogleAuthState {
   final String error;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:socshea/common/widgets/appbar/appbar.dart';
 import 'package:socshea/common/widgets/login_signup/form_divider.dart';
 import 'package:socshea/common/widgets/login_signup/social_buttons.dart';
 import 'package:socshea/features/authentication/email_register/presentation/views/widgets/register_form.dart';

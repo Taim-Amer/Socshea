@@ -6,6 +6,7 @@ import 'package:socshea/features/authentication/email_login/presentation/manager
 import 'package:socshea/features/authentication/email_login/presentation/views/forget_password_screen.dart';
 import 'package:socshea/features/authentication/email_login/presentation/views/login_screen.dart';
 import 'package:socshea/features/authentication/email_login/presentation/views/reset_password_screen.dart';
+import 'package:socshea/features/authentication/email_register/data/models/user_model.dart';
 import 'package:socshea/features/authentication/email_register/data/repositories/register_repo_impl.dart';
 import 'package:socshea/features/authentication/email_register/presentation/manager/register_cubit/register_email_cubit.dart';
 import 'package:socshea/features/authentication/email_register/presentation/views/email_verification_screen.dart';
@@ -25,6 +26,7 @@ abstract class TAppRouter {
   static const kForgetPasswordScreen = '/kForgetPassword';
   static const kResetPasswordScreen = '/kResetPassword';
   static const kNavigationMenu = '/kNavigation';
+  static const kProfileScreen = '/kProfile';
 
   static final router = GoRouter(
     routes: [
@@ -60,7 +62,7 @@ abstract class TAppRouter {
               child: BlocConsumer<RegisterEmailCubit, RegisterEmailState>(
                 listener: (context, state){
                   if(state is RegisterEmailSuccessState){
-                    context.push(TAppRouter.kEmailVerificationScreen);
+                    context.push(TAppRouter.kEmailVerificationScreen, extra: state.userModel);
                   }
                 },
                 builder: (context, state) => const RegisterScreen(),
@@ -86,11 +88,12 @@ abstract class TAppRouter {
       GoRoute(
           path: kEmailVerificationSuccessScreen,
           builder: (context, state){
+            final userModel = state.extra as UserModel;
             return SuccessScreen(
               image: TImages.successfulRegisterAnimation,
               title: TTexts.yourAccountCreatedTitle,
               subTitle: TTexts.yourAccountCreatedSubTitle,
-              onPressed: () => context.go(kNavigationMenu),
+              onPressed: () => context.go(kNavigationMenu, extra: userModel),
             );
           }
       ),
@@ -113,13 +116,15 @@ abstract class TAppRouter {
 
       //---Navigation Menu
       GoRoute(
-          path: kNavigationMenu,
-          builder: (context, state) => BlocProvider(
+        path: kNavigationMenu,
+        builder: (context, state) {
+          final userModel = state.extra as UserModel;
+          return BlocProvider(
             create: (context) => NavigationCubit(),
-            child: const NavigationMenu(),
-          ),
+            child: NavigationMenu(userModel: userModel),
+          );
+        },
       ),
-      
     ]
   );
 }

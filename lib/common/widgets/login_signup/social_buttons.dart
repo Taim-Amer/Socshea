@@ -18,7 +18,7 @@ class TSocialButtons extends StatelessWidget {
         BlocConsumer<GoogleAuthCubit, GoogleAuthState>(
           listener: (context, state){
             if(state is GoogleAuthSuccessState) {
-              context.go(TAppRouter.kNavigationMenu);
+              context.go(TAppRouter.kNavigationMenu, extra : state.userModel);
             }
           },
           builder: (context, state){
