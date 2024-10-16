@@ -13,8 +13,6 @@ import 'package:socshea/features/personalization/profile/presentation/views/widg
 import 'package:socshea/features/personalization/profile/presentation/views/widgets/profile_image.dart';
 import 'package:socshea/utils/constants/sizes.dart';
 import 'package:socshea/utils/device/device_utility.dart';
-import 'package:socshea/utils/device/device_utility.dart';
-import 'package:socshea/utils/device/device_utility.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key, required this.userModel});
