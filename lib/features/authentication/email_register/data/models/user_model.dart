@@ -6,6 +6,7 @@ class UserModel {
   String phone;
   String image;
   String email;
+  bool isVerified;
 
   UserModel({
     required this.uID,
@@ -15,6 +16,7 @@ class UserModel {
     required this.phone,
     required this.email,
     required this.image,
+    required this.isVerified,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -26,6 +28,7 @@ class UserModel {
       phone: json['phone'],
       email: json['email'],
       image: json['image'],
+      isVerified: json['isVerified'],
     );
   }
 
@@ -38,6 +41,7 @@ class UserModel {
       'phone': phone,
       'email': email,
       'image': image,
+      'isVerified': isVerified,
     };
   }
 }

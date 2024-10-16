@@ -27,12 +27,12 @@ class ProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Stack(
+            Stack(
               alignment: AlignmentDirectional.bottomCenter,
               clipBehavior: Clip.none,
               children: [
-                TCoverImage(),
-                TProfileImage()
+                const TCoverImage(),
+                TProfileImage(image: userModel.image)
               ],
             ),
             SizedBox(height: TDeviceUtils.getScreenHeight(context) * 0.1),

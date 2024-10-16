@@ -19,11 +19,11 @@ class RegisterRepoImpl implements RegisterRepo{
         password: password,
       );
 
-      await sendEmailVerification();
+      await firebaseAuth.currentUser?.sendEmailVerification();
 
-      final newUser = UserModel(uID: userCredential.user!.uid, firstName: firstName, lastName: lastName, username: username, phone: phone, email: email, image: TImages.user);
+      final newUser = UserModel(uID: userCredential.user!.uid, firstName: firstName, lastName: lastName, username: username, phone: phone, email: email, image: TImages.user, isVerified: false);
       await saveUser(userModel: newUser);
-      
+
       return(Right(newUser));
     } on FirebaseAuthException catch (e) {
       return Left(ServerFailure(e.message ?? "Authentication Error"));
@@ -47,10 +47,10 @@ class RegisterRepoImpl implements RegisterRepo{
   }
 
   @override
-  Future<Either<Failure, void>> sendEmailVerification() async{
-    try{
-      final verified = await firebaseAuth.currentUser?.sendEmailVerification();
-      return Right(verified);
+  Future<Either<Failure, bool>> sendEmailVerification() async {
+    try {
+      await firebaseAuth.currentUser?.sendEmailVerification();
+      return const Right(true);
     } on FirebaseException catch (e) {
       return Left(ServerFailure(e.message ?? "Error"));
     } catch (e) {
@@ -59,15 +59,27 @@ class RegisterRepoImpl implements RegisterRepo{
   }
 
   @override
-  Future<bool> checkEmailVerification() async{
+  Future<bool> checkEmailVerification() async {
     await firebaseAuth.currentUser?.reload();
     final currentUser = firebaseAuth.currentUser;
-    if(currentUser != null && currentUser.emailVerified) return true;
+
+    if (currentUser != null && currentUser.emailVerified) {
+      await updateUserVerificationStatus(currentUser.uid);
+      return true;
+    }
     return false;
   }
+
 
   @override
   Future<void> signOut() async{
     await firebaseAuth.signOut();
+  }
+
+  @override
+  Future<void> updateUserVerificationStatus(String uID) async {
+    await firebaseFireStore.collection('users').doc(uID).update({
+      'isVerified': true,
+    });
   }
 }

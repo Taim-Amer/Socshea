@@ -57,6 +57,7 @@ class GoogleAuthRepoImpl implements GoogleAuthRepo {
           phone: user.phoneNumber ?? "0934567890",
           email: user.email ?? "",
           image: user.photoURL ?? TImages.user,
+          isVerified: user.emailVerified
         );
 
         await saveUser(user);
@@ -89,6 +90,7 @@ class GoogleAuthRepoImpl implements GoogleAuthRepo {
       phone: user.phoneNumber ?? "0934567890",
       email: user.email ?? "",
       image: user.photoURL ?? TImages.user,
+      isVerified: user.emailVerified,
     );
 
     final userDoc = firebaseFirestore.collection("users").doc(userModel.uID);

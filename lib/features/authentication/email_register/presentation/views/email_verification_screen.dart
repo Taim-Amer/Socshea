@@ -11,9 +11,7 @@ import "package:socshea/utils/helpers/helper_functions.dart";
 import "package:socshea/utils/router/app_router.dart";
 
 class EmailVerificationScreen extends StatelessWidget {
-  const EmailVerificationScreen({super.key, this.email});
-
-  final String? email;
+  const EmailVerificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class EmailVerificationScreen extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(onPressed: () => RegisterEmailCubit.get(context).signOut(), icon: const Icon(CupertinoIcons.clear))
+          IconButton(onPressed: () => RegisterEmailCubit.get(context).signOut().then((value) => context.pop()), icon: const Icon(CupertinoIcons.clear))
         ],
       ),
       body: SingleChildScrollView(
@@ -35,8 +33,6 @@ class EmailVerificationScreen extends StatelessWidget {
 
               //title and subTitle
               Text(TTexts.confirmEmail, style: Theme.of(context).textTheme.headlineMedium, textAlign: TextAlign.center,),
-              const SizedBox(height: TSizes.spaceBtwItems,),
-              Text(email ?? "", style: Theme.of(context).textTheme.labelLarge, textAlign: TextAlign.center,),
               const SizedBox(height: TSizes.spaceBtwItems,),
               Text(TTexts.confirmEmailSubTitle, style: Theme.of(context).textTheme.labelMedium, textAlign: TextAlign.center,),
               const SizedBox(height: TSizes.spaceBtwSections,),
