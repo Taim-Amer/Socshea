@@ -16,6 +16,9 @@ import 'package:socshea/utils/device/device_utility.dart';
 import 'package:socshea/utils/device/device_utility.dart';
 import 'package:socshea/utils/device/device_utility.dart';
 import 'package:socshea/utils/device/device_utility.dart';
+import 'package:socshea/utils/device/device_utility.dart';
+import 'package:socshea/utils/device/device_utility.dart';
+import 'package:socshea/utils/device/device_utility.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key, required this.userModel});
