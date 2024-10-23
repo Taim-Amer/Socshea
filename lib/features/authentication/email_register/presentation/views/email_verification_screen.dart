@@ -2,6 +2,7 @@
 
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:go_router/go_router.dart";
 import "package:socshea/features/authentication/email_register/presentation/manager/register_cubit/register_email_cubit.dart";
 import "package:socshea/utils/constants/image_strings.dart";
@@ -19,7 +20,7 @@ class EmailVerificationScreen extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(onPressed: () => RegisterEmailCubit.get(context).signOut().then((value) => context.pop()), icon: const Icon(CupertinoIcons.clear))
+          IconButton(onPressed: () => context.read<RegisterEmailCubit>().signOut().then((value) => context.pop()), icon: const Icon(CupertinoIcons.clear))
         ],
       ),
       body: SingleChildScrollView(
@@ -40,7 +41,7 @@ class EmailVerificationScreen extends StatelessWidget {
               //buttons
               SizedBox(width: double.infinity, child: ElevatedButton(
                 onPressed: () async {
-                    await RegisterEmailCubit.get(context).checkEmailVerification().then((isVerified) {
+                    await context.read<RegisterEmailCubit>().checkEmailVerification().then((isVerified) {
                       if (isVerified) {
                         context.go(TAppRouter.kEmailVerificationSuccessScreen);
                       }
@@ -50,7 +51,7 @@ class EmailVerificationScreen extends StatelessWidget {
               const SizedBox(height: TSizes.spaceBtwItems,),
 
               SizedBox(width: double.infinity, child: TextButton(
-                onPressed: () => RegisterEmailCubit.get(context).sendEmailVerification(),
+                onPressed: () => context.read<RegisterEmailCubit>().sendEmailVerification(),
                 child: const Text(TTexts.resendEmail),
               ))
             ],

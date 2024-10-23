@@ -10,8 +10,6 @@ part 'register_email_state.dart';
 class RegisterEmailCubit extends Cubit<RegisterEmailState> {
   RegisterEmailCubit({required this.registerRepo}) : super(RegisterInitial());
 
-  static RegisterEmailCubit get(context) => BlocProvider.of(context);
-  
   final RegisterRepo registerRepo;
   GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
 

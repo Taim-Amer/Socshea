@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:socshea/features/authentication/email_login/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:socshea/utils/constants/image_strings.dart';
@@ -46,7 +47,7 @@ class ResetPasswordScreen extends StatelessWidget {
               const SizedBox(height: TSizes.spaceBtwItems,),
               SizedBox(
                 width: double.infinity,
-                child: TextButton(onPressed: () => LoginCubit.get(context).sendPasswordResetEmail, child: const Text(TTexts.resendEmail)),
+                child: TextButton(onPressed: () => context.read<LoginCubit>().sendPasswordResetEmail, child: const Text(TTexts.resendEmail)),
               ),
             ],
           ),

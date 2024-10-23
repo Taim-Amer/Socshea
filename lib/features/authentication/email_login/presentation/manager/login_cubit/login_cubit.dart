@@ -9,8 +9,6 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit({required this.loginRepo}) : super(LoginInitial());
 
-  static LoginCubit get(context) => BlocProvider.of(context);
-
   final LoginRepo loginRepo;
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   final emailController = TextEditingController();

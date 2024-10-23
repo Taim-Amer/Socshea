@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:socshea/features/authentication/email_register/presentation/manager/register_cubit/register_email_cubit.dart';
 import 'package:socshea/utils/constants/sizes.dart';
@@ -11,7 +12,7 @@ class TRegisterForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: RegisterEmailCubit.get(context).registerFormKey,
+      key: context.read<RegisterEmailCubit>().registerFormKey,
       child: Column(
         children: [
           Row(
@@ -19,7 +20,7 @@ class TRegisterForm extends StatelessWidget {
               //First Name
               Expanded(
                 child: TextFormField(
-                  controller: RegisterEmailCubit.get(context).firstNameController,
+                  controller: context.read<RegisterEmailCubit>().firstNameController,
                   validator: (value) => TValidator.validateEmptyText("First Name", value),
                   expands: false,
                   decoration: const InputDecoration(labelText: TTexts.firstName, prefixIcon: Icon(Iconsax.user)),
@@ -29,7 +30,7 @@ class TRegisterForm extends StatelessWidget {
               //Last Name
               Expanded(
                 child: TextFormField(
-                  controller: RegisterEmailCubit.get(context).lastNameController,
+                  controller: context.read<RegisterEmailCubit>().lastNameController,
                   validator: (value) => TValidator.validateEmptyText("Last Name", value),
                   expands: false,
                   decoration: const InputDecoration(labelText: TTexts.lastName, prefixIcon: Icon(Iconsax.user)),
@@ -41,7 +42,7 @@ class TRegisterForm extends StatelessWidget {
           const SizedBox(height: TSizes.spaceBtwInputField,),
           //Username
           TextFormField(
-            controller: RegisterEmailCubit.get(context).usernameController,
+            controller: context.read<RegisterEmailCubit>().usernameController,
             validator: (value) => TValidator.validateEmptyText("Username", value),
             expands: false,
             decoration: const InputDecoration(labelText: TTexts.username, prefixIcon: Icon(Iconsax.user_edit)),
@@ -50,7 +51,7 @@ class TRegisterForm extends StatelessWidget {
           const SizedBox(height: TSizes.spaceBtwInputField,),
           //Email
           TextFormField(
-            controller: RegisterEmailCubit.get(context).emailController,
+            controller: context.read<RegisterEmailCubit>().emailController,
             validator: (value) => TValidator.validateEmail(value),
             expands: false,
             decoration: const InputDecoration(labelText: TTexts.email, prefixIcon: Icon(Iconsax.direct)),
@@ -59,7 +60,7 @@ class TRegisterForm extends StatelessWidget {
           const SizedBox(height: TSizes.spaceBtwInputField,),
           //Phone Number
           TextFormField(
-            controller: RegisterEmailCubit.get(context).phoneNumberController,
+            controller: context.read<RegisterEmailCubit>().phoneNumberController,
             validator: (value) => TValidator.validatePhoneNumber(value),
             expands: false,
             decoration: const InputDecoration(labelText: TTexts.phoneNo, prefixIcon: Icon(Iconsax.call)),
@@ -68,15 +69,15 @@ class TRegisterForm extends StatelessWidget {
           const SizedBox(height: TSizes.spaceBtwInputField,),
           //Password
           TextFormField(
-            controller: RegisterEmailCubit.get(context).passwordController,
+            controller: context.read<RegisterEmailCubit>().passwordController,
             validator: (value) => TValidator.validatePassword(value),
-            obscureText: RegisterEmailCubit.get(context).hidePassword,
+            obscureText: context.read<RegisterEmailCubit>().hidePassword,
             decoration: InputDecoration(
                 labelText: TTexts.password,
                 prefixIcon: const Icon(Iconsax.password_check),
                 suffixIcon: IconButton(
-                  onPressed: () => RegisterEmailCubit.get(context).hidePassword = !RegisterEmailCubit.get(context).hidePassword,
-                  icon: Icon(RegisterEmailCubit.get(context).hidePassword ? Iconsax.eye_slash : Iconsax.eye),
+                  onPressed: () => context.read<RegisterEmailCubit>().hidePassword = !context.read<RegisterEmailCubit>().hidePassword,
+                  icon: Icon(context.read<RegisterEmailCubit>().hidePassword ? Iconsax.eye_slash : Iconsax.eye),
                 )
             ),
           ),
@@ -88,7 +89,7 @@ class TRegisterForm extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () => RegisterEmailCubit.get(context).registerWithEmail(),
+              onPressed: () => context.read<RegisterEmailCubit>().registerWithEmail(),
               child: const Text(TTexts.createAccount),
             ),
           ),

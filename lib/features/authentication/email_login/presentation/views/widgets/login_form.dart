@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:socshea/features/authentication/email_login/presentation/manager/login_cubit/login_cubit.dart';
@@ -13,13 +14,13 @@ class TLoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: LoginCubit.get(context).loginFormKey,
+      key: context.read<LoginCubit>().loginFormKey,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
         child: Column(
           children: [
             TextFormField(
-              controller: LoginCubit.get(context).emailController,
+              controller: context.read<LoginCubit>().emailController,
               validator: (value) => TValidator.validateEmail(value),
               decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.direct_right),
@@ -28,15 +29,15 @@ class TLoginForm extends StatelessWidget {
             ),
             const SizedBox(height: TSizes.spaceBtwInputField),
             TextFormField(
-              controller: LoginCubit.get(context).passwordController,
+              controller: context.read<LoginCubit>().passwordController,
               validator: (value) => TValidator.validatePassword(value),
-              obscureText: LoginCubit.get(context).hidePassword,
+              obscureText: context.read<LoginCubit>().hidePassword,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Iconsax.password_check),
                 labelText: TTexts.password,
                 suffixIcon: IconButton(
-                  onPressed: () => LoginCubit.get(context).hidePassword = !LoginCubit.get(context).hidePassword,
-                  icon: Icon(LoginCubit.get(context).hidePassword ? Iconsax.eye_slash : Iconsax.eye),
+                  onPressed: () => context.read<LoginCubit>().hidePassword = !context.read<LoginCubit>().hidePassword,
+                  icon: Icon(context.read<LoginCubit>().hidePassword ? Iconsax.eye_slash : Iconsax.eye),
                 ),
               ),
             ),
@@ -62,7 +63,7 @@ class TLoginForm extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () => LoginCubit.get(context).login(),
+                    onPressed: () => context.read<LoginCubit>().login(),
                     child: const Text(TTexts.signIn),
                   ),
                 ),
