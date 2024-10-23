@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:socshea/features/authentication/email_login/presentation/manager/login_cubit/login_cubit.dart';
@@ -19,7 +20,7 @@ class ForgetPasswordScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Form(
-            key: LoginCubit.get(context).loginFormKey,
+            key: context.read<LoginCubit>().loginFormKey,
             child: Column(
               children: [
                 //Headings
@@ -31,7 +32,7 @@ class ForgetPasswordScreen extends StatelessWidget {
 
                 //TextField
                 TextFormField(
-                  controller: LoginCubit.get(context).emailController,
+                  controller: context.read<LoginCubit>().emailController,
                   validator: (value) => TValidator.validateEmail(value),
                   decoration: const InputDecoration(labelText: TTexts.email, prefixIcon: Icon(Iconsax.direct_right)),
                 ),
@@ -40,7 +41,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 //Submit button
                 SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(onPressed: () => LoginCubit.get(context).sendPasswordResetEmail().then((value) {
+                    child: ElevatedButton(onPressed: () => context.read<LoginCubit>().sendPasswordResetEmail().then((value) {
                       context.go(TAppRouter.kResetPasswordScreen);
                     }), child: const Text(TTexts.submit))),
               ],
