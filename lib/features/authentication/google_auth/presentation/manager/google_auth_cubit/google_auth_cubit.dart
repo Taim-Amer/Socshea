@@ -16,6 +16,7 @@ class GoogleAuthCubit extends Cubit<GoogleAuthState> {
   Future<void> googleAuthentication(BuildContext context) async {
     final isConnected = await TNetworkManager.instance.isConnected();
     if (!isConnected) return ;
+    if (!isConnected) return ;
 
     final accountSelectionResult = await googleAuthRepo.selectGoogleAccount();
 
