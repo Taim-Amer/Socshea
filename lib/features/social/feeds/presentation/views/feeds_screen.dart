@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socshea/features/authentication/email_register/data/models/user_model.dart';
+import 'package:socshea/features/social/feeds/presentation/views/widgets/create_post_widget.dart';
 import 'package:socshea/features/social/feeds/presentation/views/widgets/feed_appbar.dart';
 import 'package:socshea/features/social/feeds/presentation/views/widgets/post_widget.dart';
 import 'package:socshea/utils/constants/sizes.dart';
@@ -17,6 +18,8 @@ class FeedsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            TCreatePostWidget(userModel: userModel),
+            const SizedBox(height: TSizes.spaceBtwSections,),
             SizedBox(
               height: TDeviceUtils.getScreenHeight(context),
               child: ListView.separated(
@@ -25,7 +28,7 @@ class FeedsScreen extends StatelessWidget {
                   itemCount: 4,
               ),
             ),
-            const SizedBox(height: TSizes.spaceBtwSections)
+            // const SizedBox(height: TSizes.spaceBtwSections)
           ],
         ),
       ),

@@ -13,6 +13,9 @@ import 'package:socshea/features/authentication/email_register/presentation/view
 import 'package:socshea/features/authentication/email_register/presentation/views/register_screen.dart';
 import 'package:socshea/features/authentication/google_auth/data/repositories/google_auth_repo_impl.dart';
 import 'package:socshea/features/authentication/google_auth/presentation/manager/google_auth_cubit/google_auth_cubit.dart';
+import 'package:socshea/features/social/feeds/data/repositories/feeds_repo_impl.dart';
+import 'package:socshea/features/social/feeds/presentation/manager/create_post_cubit/create_post_cubit.dart';
+import 'package:socshea/features/social/feeds/presentation/views/create_post_screen.dart';
 import 'package:socshea/navigation_menu.dart';
 import 'package:socshea/utils/constants/image_strings.dart';
 import 'package:socshea/utils/constants/text_strings.dart';
@@ -27,6 +30,7 @@ abstract class TAppRouter {
   static const kResetPasswordScreen = '/kResetPassword';
   static const kNavigationMenu = '/kNavigation';
   static const kProfileScreen = '/kProfile';
+  static const kCreatePostScreen = '/kCreatePost';
 
   static final router = GoRouter(
     routes: [
@@ -122,6 +126,18 @@ abstract class TAppRouter {
           return BlocProvider(
             create: (context) => NavigationCubit(),
             child: NavigationMenu(userModel: userModel),
+          );
+        },
+      ),
+
+      //---Create Post
+      GoRoute(
+        path: kCreatePostScreen,
+        builder: (context, state) {
+          final userModel = state.extra as UserModel;
+          return BlocProvider(
+            create: (context) => CreatePostCubit(feedsRepo: getIt.get<FeedsRepoImpl>(), userModel: userModel),
+            child: CreatePostScreen(userModel: userModel),
           );
         },
       ),

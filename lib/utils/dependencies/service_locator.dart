@@ -1,5 +1,4 @@
 import 'package:socshea/features/authentication/email_login/data/repositories/login_repo_impl.dart';
-import 'package:socshea/features/authentication/email_register/data/models/user_model.dart';
 import 'package:socshea/features/authentication/email_register/data/repositories/register_repo_impl.dart';
 import 'package:socshea/features/authentication/google_auth/data/repositories/google_auth_repo_impl.dart';
 import 'package:socshea/features/social/feeds/data/repositories/feeds_repo_impl.dart';
@@ -21,13 +20,11 @@ void initServiceLocator(){
 
   getIt.registerSingleton<TCacheHelper>(TCacheHelper());
 
-  // getIt.registerSingleton<UserModel>(UserModel(uID: uID, firstName: firstName, lastName: lastName, username: username, phone: phone, email: email, image: image, isVerified: isVerified));
-
   getIt.registerSingleton<LoginRepoImpl>(LoginRepoImpl(firebaseAuth: getIt.get<FirebaseAuth>()));
 
   getIt.registerSingleton<RegisterRepoImpl>(RegisterRepoImpl(firebaseFireStore: getIt.get<FirebaseFirestore>() ,firebaseAuth: getIt.get<FirebaseAuth>()));
 
   getIt.registerSingleton<GoogleAuthRepoImpl>(GoogleAuthRepoImpl(googleSignIn: getIt.get<GoogleSignIn>(), firebaseFirestore: getIt.get<FirebaseFirestore>(), firebaseAuth: getIt.get<FirebaseAuth>()));
   
-  getIt.registerSingleton<FeedsRepoImpl>(FeedsRepoImpl(userModel: getIt.get<UserModel>(), firebaseFirestore: getIt.get<FirebaseFirestore>()));
+  getIt.registerSingleton<FeedsRepoImpl>(FeedsRepoImpl(firebaseFirestore: getIt.get<FirebaseFirestore>()));
 }
