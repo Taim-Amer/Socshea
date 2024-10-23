@@ -5,6 +5,13 @@ import 'package:lottie/lottie.dart';
 import 'package:socshea/utils/constants/colors.dart';
 import 'package:socshea/utils/constants/sizes.dart';
 
+// ignore_for_file: deprecated_member_use
+
+import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:socshea/utils/constants/colors.dart';
+import 'package:socshea/utils/constants/sizes.dart';
+
 class TAnimationLoaderWidget extends StatelessWidget {
   const TAnimationLoaderWidget({
     super.key,
@@ -45,7 +52,11 @@ class TAnimationLoaderWidget extends StatelessWidget {
                 animation: animation,
                 showAction: showAction,
                 actionText: actionText,
-                onActionPressed: onActionPressed,
+                onActionPressed: onActionPressed ??
+                    () {
+                      // If an action is provided, call it and then dismiss
+                      Navigator.of(context).pop(); // Dismiss the dialog
+                    },
               ),
             ),
           ),
@@ -54,9 +65,12 @@ class TAnimationLoaderWidget extends StatelessWidget {
     );
   }
 
+  static void dismissLoaderDialog(BuildContext context) {
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // final dark = THelperFunctions.isDarkMode(context);
     return Center(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -76,7 +90,11 @@ class TAnimationLoaderWidget extends StatelessWidget {
                 ? SizedBox(
                     width: 250,
                     child: OutlinedButton(
-                      onPressed: onActionPressed,
+                      onPressed: () {
+                        // Dismiss the loader dialog when the button is pressed
+                        onActionPressed?.call();
+                        dismissLoaderDialog(context);
+                      },
                       style: OutlinedButton.styleFrom(
                         backgroundColor: TColors.dark,
                       ),

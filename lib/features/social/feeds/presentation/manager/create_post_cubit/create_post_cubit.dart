@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:socshea/common/widgets/alerts/toast.dart';
+import 'package:socshea/common/widgets/loaders/animation_loader.dart';
 import 'package:socshea/features/authentication/email_register/data/models/user_model.dart';
 import 'package:socshea/features/social/feeds/data/models/new_post_model.dart';
 import 'package:socshea/features/social/feeds/data/repositories/feeds_repo.dart';
@@ -16,17 +18,32 @@ class CreatePostCubit extends Cubit<CreatePostState> {
   final postTextController = TextEditingController();
   final UserModel userModel;
 
-  Future<void> createPost() async{
+  Future<void> createPost(BuildContext context) async{
     emit(CreatePostLoadingState());
-    final isConnected = await TNetworkManager.instance.isConnected();
-    if(!isConnected) return;
+    state is CreatePostLoadingState ?  TAnimationLoaderWidget.showLoaderDialog(
+      context,
+      text: "",
+      animation: 'assets/animations/Animation - 1728947928594.json',
+    ) : const SizedBox();
 
-    var response = await feedsRepo.createNewPost(postTextController.text.trim(), TImages.promoBanner4, uID: userModel.uID, name: userModel.username, image: userModel.image, dateTime: DateTime.now().toString());
+    final isConnected = await TNetworkManager.instance.isConnected();
+    if(!isConnected) return ;
+
+    var response = await feedsRepo.createNewPost(postTextController.text, TImages.promoBanner4, uID: userModel.uID, name: userModel.username, image: userModel.image, dateTime: DateTime.now().toString());
 
 
     response.fold(
-        (failure) => emit(CreatePostFailureState(failure.message)),
-        (success) => emit(CreatePostSuccessState(success)),
+        (failure) {
+          emit(CreatePostFailureState(failure.message));
+          if(state is CreatePostFailureState){
+            TAnimationLoaderWidget.dismissLoaderDialog(context);
+            return showToast(failure.message, ToastState.ERROR);
+          }
+        },
+        (success) {
+          emit(CreatePostSuccessState(success));
+          TAnimationLoaderWidget.dismissLoaderDialog(context);
+        },
     );
   }
 }
