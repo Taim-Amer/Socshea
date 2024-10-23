@@ -25,7 +25,7 @@ class TSocialButtons extends StatelessWidget {
             return Container(
               decoration: BoxDecoration(border: Border.all(color: TColors.grey,), borderRadius: BorderRadius.circular(100)),
               child: IconButton(
-                onPressed: () => GoogleAuthCubit.get(context).googleAuthentication(context),
+                onPressed: () => context.read<GoogleAuthCubit>().googleAuthentication(context),
                 icon: const Image(
                   width: TSizes.iconMd,
                   height: TSizes.iconMd,
