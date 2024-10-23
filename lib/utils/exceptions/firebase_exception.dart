@@ -1,8 +1,7 @@
 import 'package:socshea/utils/exceptions/failures.dart';
 
 class TFireBaseException extends Failure {
-  TFireBaseException(String code)
-      : super(code, _getMessage(code));
+  TFireBaseException(String code) : super(code, _getMessage(code));
 
   static String _getMessage(String code) {
     switch (code) {

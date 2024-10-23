@@ -40,7 +40,7 @@ class NavigationMenu extends StatelessWidget {
       body: BlocBuilder<NavigationCubit, int>(
         builder: (context, selectedIndex) {
           final screens = [
-            const FeedsScreen(),
+            FeedsScreen(userModel: userModel,),
             Container(color: Colors.redAccent,),
             Container(color: Colors.greenAccent,),
             Container(color: Colors.blueAccent,),

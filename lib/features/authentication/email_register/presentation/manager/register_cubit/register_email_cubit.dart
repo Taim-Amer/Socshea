@@ -19,6 +19,7 @@ class RegisterEmailCubit extends Cubit<RegisterEmailState> {
   final lastNameController = TextEditingController();
   final usernameController = TextEditingController();
   final phoneNumberController = TextEditingController();
+
   bool hidePassword = true;
   bool isVerified = false;
 

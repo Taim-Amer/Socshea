@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socshea/common/widgets/images/circular_image.dart';
 import 'package:socshea/utils/constants/colors.dart';
-import 'package:socshea/utils/constants/image_strings.dart';
 import 'package:socshea/utils/constants/sizes.dart';
 import 'package:socshea/utils/helpers/helper_functions.dart';
 

@@ -91,7 +91,6 @@ class RegisterRepoImpl implements RegisterRepo{
     return false;
   }
 
-
   @override
   Future<void> signOut() async{
     await firebaseAuth.signOut();

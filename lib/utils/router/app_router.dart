@@ -128,6 +128,7 @@ abstract class TAppRouter {
     ]
   );
 }
+
 //   static const kRegisterView = '/kRegisterView1';
 //   static const kCompleteRegisterView = '/kRegisterView2';
 //   static const kTechCategoryView = "/kTechCategoryView";

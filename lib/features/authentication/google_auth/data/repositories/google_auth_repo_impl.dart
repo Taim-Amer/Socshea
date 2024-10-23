@@ -47,7 +47,6 @@ class GoogleAuthRepoImpl implements GoogleAuthRepo {
   }
 
   @override
-  @override
   Future<Either<Failure, UserModel>> authenticateWithGoogle(GoogleSignInAccount googleUser) async {
     try {
       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
