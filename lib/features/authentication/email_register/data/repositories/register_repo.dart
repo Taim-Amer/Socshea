@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:socshea/features/authentication/email_register/data/models/user_model.dart';
 import 'package:socshea/utils/exceptions/failures.dart';
 

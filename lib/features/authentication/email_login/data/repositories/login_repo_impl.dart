@@ -1,7 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:socshea/features/authentication/email_login/data/repositories/login_repo.dart';
 import 'package:socshea/utils/exceptions/failures.dart';
+import 'package:socshea/utils/exceptions/firebase_auth_exception.dart';
+import 'package:socshea/utils/exceptions/firebase_exception.dart';
+import 'package:socshea/utils/exceptions/format_exception.dart';
+import 'package:socshea/utils/exceptions/platform_exception.dart';
 
 class LoginRepoImpl implements LoginRepo {
   final FirebaseAuth firebaseAuth;
@@ -17,9 +22,15 @@ class LoginRepoImpl implements LoginRepo {
       );
       return Right(userCredential);
     } on FirebaseAuthException catch (e) {
-      return Left(ServerFailure(e.message ?? "Authentication Error"));
-    } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(TFireBaseAuthException(e.code));
+    } on FirebaseException catch (e) {
+      return Left(TFireBaseException(e.code));
+    } on FormatException catch (e) {
+      return Left(TFormatException.fromMessage(e.message));
+    } on PlatformException catch (e) {
+      return Left(TPlatformException(e.code));
+    } catch(e){
+      throw "Something went wrong. Please try again.";
     }
   }
 

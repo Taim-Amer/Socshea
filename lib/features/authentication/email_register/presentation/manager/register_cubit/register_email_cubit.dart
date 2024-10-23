@@ -39,7 +39,7 @@ class RegisterEmailCubit extends Cubit<RegisterEmailState> {
       password: passwordController.text.trim());
 
     response.fold(
-            (failure) => emit(RegisterEmailFailureState(failure.errMessage)),
+            (failure) => emit(RegisterEmailFailureState(failure.message)),
             (success) => emit(RegisterEmailSuccessState(success)));
 
   }

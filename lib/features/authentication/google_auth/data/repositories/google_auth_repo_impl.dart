@@ -1,11 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:socshea/features/authentication/email_register/data/models/user_model.dart';
 import 'package:socshea/features/authentication/google_auth/data/repositories/google_auth_repo.dart';
 import 'package:socshea/utils/constants/image_strings.dart';
 import 'package:socshea/utils/exceptions/failures.dart';
+import 'package:socshea/utils/exceptions/firebase_auth_exception.dart';
+import 'package:socshea/utils/exceptions/firebase_exception.dart';
+import 'package:socshea/utils/exceptions/format_exception.dart';
+import 'package:socshea/utils/exceptions/platform_exception.dart';
 
 class GoogleAuthRepoImpl implements GoogleAuthRepo {
   final FirebaseAuth firebaseAuth;
@@ -25,13 +30,19 @@ class GoogleAuthRepoImpl implements GoogleAuthRepo {
 
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       if (googleUser == null) {
-        return Left(ServerFailure("Google Sign-In was canceled"));
+        return Left(Failure('sign_in_canceled', 'Google Sign-In was canceled'));
       }
       return Right(googleUser);
     } on FirebaseAuthException catch (e) {
-      return Left(ServerFailure(e.message ?? "Google Sign-In Error"));
-    } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(TFireBaseAuthException(e.code));
+    } on FirebaseException catch (e) {
+      return Left(TFireBaseException(e.code));
+    } on FormatException catch (e) {
+      return Left(TFormatException.fromMessage(e.message));
+    } on PlatformException catch (e) {
+      return Left(TPlatformException(e.code));
+    } catch(e){
+      throw "Something went wrong. Please try again.";
     }
   }
 
@@ -64,14 +75,18 @@ class GoogleAuthRepoImpl implements GoogleAuthRepo {
 
         return Right(userModel);
       } else {
-        return Left(ServerFailure("User data not available"));
+        return Left(Failure('user_data_unavailable', 'User data not available'));
       }
     } on FirebaseAuthException catch (e) {
-      return Left(ServerFailure(e.message ?? "Google Sign-In Error"));
+      return Left(TFireBaseAuthException(e.code));
     } on FirebaseException catch (e) {
-      return Left(ServerFailure(e.message ?? "Google Sign-In Error"));
-    } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(TFireBaseException(e.code));
+    } on FormatException catch (e) {
+      return Left(TFormatException.fromMessage(e.message));
+    } on PlatformException catch (e) {
+      return Left(TPlatformException(e.code));
+    } catch(e){
+      throw "Something went wrong. Please try again.";
     }
   }
 

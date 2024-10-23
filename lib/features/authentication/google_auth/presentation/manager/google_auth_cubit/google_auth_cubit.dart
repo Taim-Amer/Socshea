@@ -16,12 +16,11 @@ class GoogleAuthCubit extends Cubit<GoogleAuthState> {
   Future<void> googleAuthentication(BuildContext context) async {
     final isConnected = await TNetworkManager.instance.isConnected();
     if (!isConnected) return ;
-    if (!isConnected) return ;
 
     final accountSelectionResult = await googleAuthRepo.selectGoogleAccount();
 
     accountSelectionResult.fold(
-          (failure) => emit(GoogleAuthFailureState(failure.errMessage)),
+          (failure) => emit(GoogleAuthFailureState(failure.message)),
           (googleUser) async {
             TAnimationLoaderWidget.showLoaderDialog(
               context,
@@ -33,7 +32,7 @@ class GoogleAuthCubit extends Cubit<GoogleAuthState> {
             final authenticationResult = await googleAuthRepo.authenticateWithGoogle(googleUser);
 
             authenticationResult.fold(
-                  (failure) => emit(GoogleAuthFailureState(failure.errMessage)),
+                  (failure) => emit(GoogleAuthFailureState(failure.message)),
                   (success) => emit(GoogleAuthSuccessState(success)),
             );
       },
