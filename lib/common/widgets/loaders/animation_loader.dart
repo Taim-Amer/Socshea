@@ -5,13 +5,6 @@ import 'package:lottie/lottie.dart';
 import 'package:socshea/utils/constants/colors.dart';
 import 'package:socshea/utils/constants/sizes.dart';
 
-// ignore_for_file: deprecated_member_use
-
-import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:socshea/utils/constants/colors.dart';
-import 'package:socshea/utils/constants/sizes.dart';
-
 class TAnimationLoaderWidget extends StatelessWidget {
   const TAnimationLoaderWidget({
     super.key,
@@ -54,8 +47,7 @@ class TAnimationLoaderWidget extends StatelessWidget {
                 actionText: actionText,
                 onActionPressed: onActionPressed ??
                     () {
-                      // If an action is provided, call it and then dismiss
-                      Navigator.of(context).pop(); // Dismiss the dialog
+                      Navigator.of(context).pop();
                     },
               ),
             ),
@@ -91,7 +83,6 @@ class TAnimationLoaderWidget extends StatelessWidget {
                     width: 250,
                     child: OutlinedButton(
                       onPressed: () {
-                        // Dismiss the loader dialog when the button is pressed
                         onActionPressed?.call();
                         dismissLoaderDialog(context);
                       },

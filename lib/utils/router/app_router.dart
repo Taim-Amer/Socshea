@@ -13,6 +13,7 @@ import 'package:socshea/features/authentication/email_register/presentation/view
 import 'package:socshea/features/authentication/email_register/presentation/views/register_screen.dart';
 import 'package:socshea/features/authentication/google_auth/data/repositories/google_auth_repo_impl.dart';
 import 'package:socshea/features/authentication/google_auth/presentation/manager/google_auth_cubit/google_auth_cubit.dart';
+import 'package:socshea/features/personalization/profile/presentation/manager/image_picker_cubit/image_picker_cubit.dart';
 import 'package:socshea/features/social/feeds/data/repositories/feeds_repo_impl.dart';
 import 'package:socshea/features/social/feeds/presentation/manager/create_post_cubit/create_post_cubit.dart';
 import 'package:socshea/features/social/feeds/presentation/views/create_post_screen.dart';
@@ -62,6 +63,7 @@ abstract class TAppRouter {
               providers: [
                 BlocProvider(create: (context) => RegisterEmailCubit(registerRepo: getIt.get<RegisterRepoImpl>())),
                 BlocProvider(create: (context) => GoogleAuthCubit(googleAuthRepo: getIt.get<GoogleAuthRepoImpl>())),
+                BlocProvider(create: (context) => ImagePickerCubit()),
               ],
               child: BlocConsumer<RegisterEmailCubit, RegisterEmailState>(
                 listener: (context, state){
@@ -123,8 +125,11 @@ abstract class TAppRouter {
         path: kNavigationMenu,
         builder: (context, state) {
           final userModel = state.extra as UserModel;
-          return BlocProvider(
-            create: (context) => NavigationCubit(),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => NavigationCubit()),
+              BlocProvider(create: (context) => ImagePickerCubit()),
+            ],
             child: NavigationMenu(userModel: userModel),
           );
         },

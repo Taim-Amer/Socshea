@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:socshea/utils/constants/colors.dart';
 import 'package:socshea/utils/constants/sizes.dart';
@@ -27,6 +28,15 @@ class TCircularImage extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
 
+    ImageProvider imageProvider;
+    if (isNetworkImage) {
+      imageProvider = NetworkImage(image);
+    } else if (File(image).existsSync()) {
+      imageProvider = FileImage(File(image));
+    } else {
+      imageProvider = AssetImage(image);
+    }
+
     return Container(
       width: width,
       height: height,
@@ -40,7 +50,7 @@ class TCircularImage extends StatelessWidget {
           width: width - 2 * padding,
           height: height - 2 * padding,
           fit: fit,
-          image: isNetworkImage ? NetworkImage(image) : AssetImage(image) as ImageProvider,
+          image: imageProvider,
           color: overlayColor,
         ),
       ),

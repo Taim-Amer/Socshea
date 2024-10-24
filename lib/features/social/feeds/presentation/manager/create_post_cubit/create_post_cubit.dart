@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
 import 'package:socshea/common/widgets/alerts/toast.dart';
 import 'package:socshea/common/widgets/loaders/animation_loader.dart';
 import 'package:socshea/features/authentication/email_register/data/models/user_model.dart';
@@ -43,6 +44,7 @@ class CreatePostCubit extends Cubit<CreatePostState> {
         (success) {
           emit(CreatePostSuccessState(success));
           TAnimationLoaderWidget.dismissLoaderDialog(context);
+          context.pop();
         },
     );
   }
